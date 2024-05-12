@@ -1023,3 +1023,10 @@ button[type='PostImageUploadBtn'] {
   margin-top: 8px;
   font-size: 12px;
 }
+
+.profileImgUrlContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

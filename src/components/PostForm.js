@@ -47,6 +47,7 @@ const PostForm = ({ TitleValue, ContentValue, ImageUrlValue, onTitleChange, onCo
                     onChange={onImageUrlChange}
                     placeholder="이미지 URL을 입력하세요"
                     className="ImageUrlInput"
+                    style={{ width: '100%' }} // Adjust the width here
                 />
             </div>
             <div className="PostFormBtnContainer">
