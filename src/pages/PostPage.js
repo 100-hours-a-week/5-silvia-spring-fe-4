@@ -22,6 +22,8 @@ const PostPage = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [users, setUsers] = useState([]);
     const [commentToDelete, setCommentToDelete] = useState(null);
+    const [editingCommentId, setEditingCommentId] = useState(null);
+    const [commentText, setCommentText] = useState('');
 
     const userId = getCookieValue('userId'); // Get userId from cookies
 
@@ -144,6 +146,96 @@ const PostPage = () => {
         }
     };
 
+    const handleCommentInputChange = (e) => {
+        setCommentText(e.target.value);
+    };
+
+    const handleCommentEdit = (commentId, commentText) => {
+        setEditingCommentId(commentId);
+        setCommentText(commentText);
+    };
+
+    const handleCommentRegister = async () => {
+        if (editingCommentId) {
+            try {
+                console.log(`Updating comment ${editingCommentId} with text: ${commentText}`);
+
+                const response = await axios.put(
+                    `http://localhost:3001/api/posts/${postId}/comments/${editingCommentId}`,
+                    { commentText },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        withCredentials: true
+                    }
+                );
+
+                console.log('Response:', response);
+
+                if (response.status === 200) {
+                    console.log('Comment updated successfully:', response.data);
+                    setPost(prevPost => ({
+                        ...prevPost,
+                        comments: prevPost.comments.map(comment =>
+                            comment.commentId === editingCommentId ? { ...comment, commentText } : comment
+                        )
+                    }));
+                } else {
+                    console.error('Failed to update comment. Status:', response.status);
+                    throw new Error('Failed to update comment');
+                }
+            } catch (error) {
+                if (error.response) {
+                    console.error('Error response from server:', error.response.data);
+                } else if (error.request) {
+                    console.error('No response received:', error.request);
+                } else {
+                    console.error('Error setting up request:', error.message);
+                }
+                alert('An error occurred while updating the comment. Please try again later.');
+            } finally {
+                setEditingCommentId(null);
+                setCommentText('');
+            }
+        } else {
+            // Add new comment
+            try {
+                const response = await axios.post(
+                    `http://localhost:3001/api/posts/${postId}/comments`,
+                    { commentText, commenterId: userId },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        withCredentials: true
+                    }
+                );
+
+                if (response.status === 201) {
+                    const newComment = response.data;
+                    setPost(prevPost => ({
+                        ...prevPost,
+                        comments: [...prevPost.comments, newComment]
+                    }));
+                    setCommentText('');
+                } else {
+                    console.error('Failed to add comment. Status:', response.status);
+                    throw new Error('Failed to add comment');
+                }
+            } catch (error) {
+                if (error.response) {
+                    console.error('Error response from server:', error.response.data);
+                } else if (error.request) {
+                    console.error('No response received:', error.request);
+                } else {
+                    console.error('Error setting up request:', error.message);
+                }
+                alert('An error occurred while adding the comment. Please try again later.');
+            }
+        }
+    };
+
     function formatViews(views) {
         if (views >= 1000000) {
             return (views / 1000000).toFixed(1) + "M";
@@ -207,11 +299,17 @@ const PostPage = () => {
                         type="text"
                         className="CommentInput"
                         placeholder="댓글을 남겨주세요!"
+                        value={commentText}
+                        onChange={handleCommentInputChange}
                     ></textarea>
                 </div>
                 <hr />
                 <div className="CommentBtnContainer">
-                    <Buttons.CreateBtn label="댓글 등록" style={{ marginRight: '18px' }} />
+                    <Buttons.CreateBtn
+                        label={editingCommentId ? "댓글 수정" : "댓글 등록"}
+                        style={{ marginRight: '18px' }}
+                        onClick={handleCommentRegister}
+                    />
                 </div>
             </div>
             <div className="CommentsArea">
@@ -225,7 +323,7 @@ const PostPage = () => {
                             </div>
                             {comment.commenterId && comment.commenterId.toString() === userId && (
                                 <div className="CommentBtn">
-                                    <Buttons.PostBtn label="수정" />
+                                    <Buttons.PostBtn label="수정" onClick={() => handleCommentEdit(comment.commentId, comment.commentText)} />
                                     <Buttons.PostBtn label="삭제" onClick={() => showModal(comment.commentId)} />
                                 </div>
                             )}
