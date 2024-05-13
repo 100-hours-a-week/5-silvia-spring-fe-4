@@ -42,7 +42,7 @@ const SignUpForm = () => {
         if (!email) {
             setEmailError('*이메일을 입력해주세요.');
         } else if (!/\S+@\S+\.\S+/.test(email)) {
-            setEmailError('*올바른 이메일 주소 형식을 입력해주세요.');
+            setEmailError('*올바른 이메일 주소 형식을 입력해주세요. (예: 123@example.com)');
         } else {
             // Check for duplicate email
             try {

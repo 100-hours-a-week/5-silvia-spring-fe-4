@@ -1,48 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { NicknameInputField } from './InputField';
 import ProfileImgPicker from "./ProfileImgPicker";
 import * as Buttons from "./Buttons";
 import ToastMessage from "./ToastMessage";
 import Modal from '../components/Modal';
+import useUserData from '../hooks/useUserData'; // Import the custom hook
 
 const ProfileEditForm = () => {
     const { userId } = useParams();
-    const [nickname, setNickname] = useState('');
-    const [email, setEmail] = useState('');
-    const [showToast, setShowToast] = useState(false);
+    const {
+        nickname,
+        email,
+        showToast,
+        setNickname,
+        updateNickname
+    } = useUserData(userId); // Use the custom hook
+
     const [isModalVisible, setIsModalVisible] = useState(false);
-
-    useEffect(() => {
-        // Fetch user data from the backend based on userId
-        const fetchUserData = async () => {
-            try {
-                const response = await fetch(`http://localhost:3001/api/accounts/${userId}`, {
-                    credentials: 'include'
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user data');
-                }
-                const data = await response.json();
-                const user = data.user;
-                if (user) {
-                    setNickname(user.nickname);
-                    setEmail(user.email);
-                }
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
-
-        fetchUserData();
-    }, [userId]);
 
     const handleNicknameChange = (e) => {
         setNickname(e.target.value);
     };
 
     const handleImageUrlChange = (newImageUrl) => {
-        // Handle the image URL change here
         console.log('New Image URL:', newImageUrl);
     };
 
@@ -55,29 +36,8 @@ const ProfileEditForm = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3001/api/accounts/${userId}/nickname`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ nickname }),
-                credentials: 'include'
-            });
-
-            if (!response.ok) {
-                const errorMessage = await response.text();
-                if (response.status === 409) {
-                    alert('중복된 닉네임입니다.');
-                } else {
-                    throw new Error(errorMessage);
-                }
-                return;
-            }
-
-            setShowToast(true);
-            setTimeout(() => setShowToast(false), 2000);
+            await updateNickname(nickname);
         } catch (error) {
-            console.error('Error updating user data:', error);
             alert(`Error: ${error.message}`);
         }
     };
@@ -100,7 +60,6 @@ const ProfileEditForm = () => {
             });
             if (response.ok) {
                 console.log('User and associated posts deleted successfully');
-                // Redirect to home or login page
                 window.location.href = '/login';
             } else {
                 const errorMessage = await response.text();
