@@ -30,8 +30,11 @@ const ProfileImgPicker = ({ userId, onImageUrlChange }) => {
     }, [userId]);
 
     const handleImageUrlChange = (e) => {
-        setImageUrl(e.target.value);
-        onImageUrlChange(e.target.value);
+        const newImageUrl = e.target.value;
+        setImageUrl(newImageUrl);
+        if (onImageUrlChange) {
+            onImageUrlChange(newImageUrl);
+        }
     };
 
     const handleImageUrlSubmit = async () => {

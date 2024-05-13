@@ -21,9 +21,9 @@ const PostEditPage = () => {
                 }
                 const data = await response.json();
                 setPost(data);
-                setTitle(data.postTitle);  // Set title state
-                setContent(data.postContents);  // Set content state
-                setImageUrl(data.postImage);  // Set image URL state
+                setTitle(data.postTitle);
+                setContent(data.postContents);
+                setImageUrl(data.postImage);
             } catch (error) {
                 setError(error.message);
             } finally {

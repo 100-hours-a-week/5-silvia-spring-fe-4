@@ -41,6 +41,11 @@ const ProfileEditForm = () => {
         setNickname(e.target.value);
     };
 
+    const handleImageUrlChange = (newImageUrl) => {
+        // Handle the image URL change here
+        console.log('New Image URL:', newImageUrl);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -111,7 +116,7 @@ const ProfileEditForm = () => {
         <form className="ProfileEditGroup-Img" onSubmit={handleSubmit}>
             <div className="ProfileEditGroup">
                 <div className="ProfileEditFormLabel" style={{ marginTop: '12px' }}>프로필 사진*</div>
-                <ProfileImgPicker userId={userId} />
+                <ProfileImgPicker userId={userId} onImageUrlChange={handleImageUrlChange} />
             </div>
             <div className="ProfileEditGroup">
                 <div className="ProfileEditFormLabel" style={{ marginTop: '36px' }}>이메일</div>

@@ -13,6 +13,17 @@ const PostForm = ({ TitleValue, ContentValue, ImageUrlValue, onTitleChange, onCo
         }
     }, [TitleValue, ContentValue]);
 
+    // Logging the received props for debugging
+    console.log('Received Props:', {
+        TitleValue,
+        ContentValue,
+        ImageUrlValue,
+        onTitleChange,
+        onContentChange,
+        onImageUrlChange,
+        onSubmit
+    });
+
     return (
         <form className="PostForm" onSubmit={onSubmit}>
             <div className="PostFormTitleGroup">

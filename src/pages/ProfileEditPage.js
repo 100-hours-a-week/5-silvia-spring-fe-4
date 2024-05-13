@@ -10,8 +10,6 @@ const ProfileEditPage = () => {
                 <ProfileEditForm />
             </div>
 
-
-
         </div>
     );
 };
