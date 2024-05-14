@@ -36,7 +36,6 @@ function Header({ showBackButton, showUserProfile }) {
     }, [userId]);
 
     useEffect(() => {
-        console.log('User ID:', userId);
     }, [userId]);
 
     const toggleDropdown = () => {
@@ -71,7 +70,6 @@ function Header({ showBackButton, showUserProfile }) {
             });
             if (response.ok) {
                 console.log('Logout successful');
-                // Redirect to login or home page
                 window.location.href = '/login';
             } else {
                 console.error('Logout failed');

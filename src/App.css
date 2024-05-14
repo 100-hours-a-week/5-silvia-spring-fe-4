@@ -740,14 +740,6 @@ button[type='PostImageUploadBtn'] {
 }
 
 
-.ProfileImgPickerContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 36px;
-}
 
 .ToastMessage {
   width: 102px;
@@ -818,58 +810,7 @@ button[type='PostImageUploadBtn'] {
 /*  object-fit: cover;*/
 /*}*/
 
-.profile-img-picker {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-}
 
-.img-picker-button {
-  width: 149px;
-  height: 149px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #ccc;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  transition: all 0.3s ease;
-  flex-direction: column;
-}
-
-/*.img-picker-button:hover .overlay {*/
-/*  opacity: 1;*/
-/*}*/
-
-/*.img-picker-button:hover span {*/
-/*  opacity: 1;*/
-/*}*/
-
-
-/*.overlayText {*/
-/*  font-size: 30px;*/
-/*}*/
-
-/*.img-picker-button span {*/
-/*  width: 52px;*/
-/*  height: 27px;*/
-/*  border-radius: 18px;*/
-/*  border: 1px solid white;*/
-/*  background-color: rgba(0, 0, 0, 0.45);*/
-/*  font-size: 17px;*/
-/*  font-weight: 700;*/
-/*  color: #fff;*/
-/*  text-align: center;*/
-/*  !*line-height: 1.2;*!*/
-/*  position: absolute;*/
-/*  opacity: 0;*/
-/*  transition: opacity 0.3s ease;*/
-/*  padding-top: 5px;*/
-/*}*/
 
 .overlay {
   position: absolute;
@@ -1030,3 +971,71 @@ button[type='PostImageUploadBtn'] {
   justify-content: center;
   align-items: center;
 }
+
+.ProfileImgInput {
+  width: 149px;
+  height: 149px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  border: none;
+}
+
+.profile-img-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.img-picker-button {
+  width: 149px;
+  height: 149px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ccc;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-direction: column;
+}
+
+
+
+
+/*.img-picker-button:hover .overlay {*/
+/*  opacity: 1;*/
+/*}*/
+
+/*.img-picker-button:hover span {*/
+/*  opacity: 1;*/
+/*}*/
+
+
+/*.overlayText {*/
+/*  font-size: 30px;*/
+/*}*/
+
+/*.img-picker-button span {*/
+/*  width: 52px;*/
+/*  height: 27px;*/
+/*  border-radius: 18px;*/
+/*  border: 1px solid white;*/
+/*  background-color: rgba(0, 0, 0, 0.45);*/
+/*  font-size: 17px;*/
+/*  font-weight: 700;*/
+/*  color: #fff;*/
+/*  text-align: center;*/
+/*  !*line-height: 1.2;*!*/
+/*  position: absolute;*/
+/*  opacity: 0;*/
+/*  transition: opacity 0.3s ease;*/
+/*  padding-top: 5px;*/
+/*}*/

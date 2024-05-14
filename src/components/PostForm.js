@@ -1,28 +1,45 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import * as Buttons from './Buttons';
 import HelperMessage from './HelperMessage';
 
-const PostForm = ({ TitleValue, ContentValue, ImageUrlValue, onTitleChange, onContentChange, onImageUrlChange, onSubmit }) => {
+const PostForm = ({ TitleValue, ContentValue, onTitleChange, onContentChange, onImageUrlChange, onSubmit }) => {
     const [helperMessage, setHelperMessage] = useState('');
+    const [uploading, setUploading] = useState(false);
 
     useEffect(() => {
         if (!TitleValue || !ContentValue) {
-            setHelperMessage('*제목,내용을 모두 작성해주세요');
+            setHelperMessage('*제목과 내용을 모두 작성해주세요');
         } else {
             setHelperMessage('');
         }
     }, [TitleValue, ContentValue]);
 
-    // Logging the received props for debugging
-    console.log('Received Props:', {
-        TitleValue,
-        ContentValue,
-        ImageUrlValue,
-        onTitleChange,
-        onContentChange,
-        onImageUrlChange,
-        onSubmit
-    });
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        if (!file) {
+            alert('Please select a file.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('postImage', file);
+
+        try {
+            setUploading(true);
+            const response = await axios.post('http://localhost:3001/api/posts/image', formData);
+            onImageUrlChange(response.data.postImage);
+            setUploading(false);
+        } catch (error) {
+            console.error('Failed to upload image:', error);
+            alert(`Failed to upload image: ${error.response ? (error.response.data || error.response.statusText) : 'Server error'}`);
+            setUploading(false);
+        }
+    };
+
+
+
+
 
     return (
         <form className="PostForm" onSubmit={onSubmit}>
@@ -51,15 +68,14 @@ const PostForm = ({ TitleValue, ContentValue, ImageUrlValue, onTitleChange, onCo
                 {helperMessage && <HelperMessage text={helperMessage}/>}
             </div>
             <div className="FormImgInputGroup">
-                <div className="PostFormImgLabel">이미지 URL</div>
+                <div className="PostFormImgLabel">이미지 업로드</div>
                 <input
-                    type="text"
-                    value={ImageUrlValue}
-                    onChange={onImageUrlChange}
-                    placeholder="이미지 URL을 입력하세요"
-                    className="ImageUrlInput"
-                    style={{ width: '100%' }} // Adjust the width here
+                    type="file"
+                    onChange={handleImageUpload}
+                    disabled={uploading}
+                    style={{ width: '100%' }}
                 />
+                {uploading && <p>이미지 업로드 중...</p>}
             </div>
             <div className="PostFormBtnContainer">
                 <Buttons.SubmitBtn

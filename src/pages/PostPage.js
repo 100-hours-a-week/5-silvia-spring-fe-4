@@ -69,6 +69,8 @@ const PostPage = () => {
         return <p>Post not found</p>;
     }
 
+
+
     const handleEdit = async () => {
         try {
             const response = await axios.get(`http://localhost:3001/api/posts/${postId}/checkEditPermission`, {
