@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 
 const useUserData = (userId) => {
     const [nickname, setNickname] = useState('');
     const [email, setEmail] = useState('');
     const [showToast, setShowToast] = useState(false);
 
-    useEffect(() => {
+    useMemo(() => {
         const fetchUserData = async () => {
             try {
                 const response = await fetch(`http://localhost:3001/api/accounts/${userId}`, {

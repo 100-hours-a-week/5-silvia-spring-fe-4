@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { EmailInputField, PasswordInputField, PasswordConfirmInputField, NicknameInputField } from './InputField';
-import ProfileImgPicker from './ProfileImgPicker';
+// import ProfileImgPicker from './ProfileImgPicker';
+import SignUpProfileImgPicker from "./SignUpProfileImgPicker";
 
 const SignUpForm = () => {
     const [email, setEmail] = useState('');
@@ -61,6 +62,7 @@ const SignUpForm = () => {
         }
     };
 
+
     const validatePassword = (password) => {
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,20}$/;
         if (!password) {
@@ -93,6 +95,8 @@ const SignUpForm = () => {
             setNicknameError('');
         }
     };
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -135,7 +139,7 @@ const SignUpForm = () => {
 
             <div className="SignUpProfilePickerContainer">
                 <div className="SignUpProfileLabel"><span>프로필 사진</span></div>
-                <ProfileImgPicker
+                <SignUpProfileImgPicker
                     onImageUrlChange={handleProfileImageUrlChange}
                 />
             </div>

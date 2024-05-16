@@ -24,7 +24,13 @@ const ProfileEditForm = () => {
     };
 
     const handleImageUrlChange = (newImageUrl) => {
-        console.log('New Image URL:', newImageUrl);
+        if (newImageUrl) {
+            // If you had a state to set here, you would do it like this:
+            // setState({ postImage: newImageUrl });
+            console.log('New Image URL:', newImageUrl);
+        } else {
+            console.error("Received undefined image URL");
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -37,6 +43,10 @@ const ProfileEditForm = () => {
 
         try {
             await updateNickname(nickname);
+            // Set a timeout to refresh the page 2 seconds after a successful update
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);  // 2000 milliseconds = 2 seconds
         } catch (error) {
             alert(`Error: ${error.message}`);
         }
@@ -59,6 +69,7 @@ const ProfileEditForm = () => {
                 credentials: 'include'
             });
             if (response.ok) {
+                alert('계정이 삭제되었습니다 (҂ ꒦ິヮ꒦ິ)')
                 console.log('User and associated posts deleted successfully');
                 window.location.href = '/login';
             } else {
@@ -73,44 +84,46 @@ const ProfileEditForm = () => {
 
     return (
         <form className="ProfileEditGroup-Img" onSubmit={handleSubmit}>
-            <div className="ProfileEditGroup">
-                <div className="ProfileEditFormLabel" style={{ marginTop: '12px' }}>프로필 사진*</div>
-                <ProfileImgPicker userId={userId} onImageUrlChange={handleImageUrlChange} />
-            </div>
-            <div className="ProfileEditGroup">
-                <div className="ProfileEditFormLabel" style={{ marginTop: '36px' }}>이메일</div>
-                <p>{email}</p>
-            </div>
-            <div className="ProfileEditFormLabel">닉네임</div>
-            <NicknameInputField
-                value={nickname}
-                onChange={handleNicknameChange}
-                placeholder="닉네임을 입력해주세요"
-            />
-            <div className="ProfileSubmitBtn">
-                <Buttons.SubmitBtn
-                    label={"수정하기"}
-                    type="submit"
+
+                <div className="ProfileEditGroup">
+                    <div className="ProfileEditFormLabel" style={{marginTop: '12px'}}>프로필 사진*</div>
+                    <ProfileImgPicker userId={userId} onImageUrlChange={handleImageUrlChange}/>
+                </div>
+                <div className="ProfileEditGroup">
+                    <div className="ProfileEditFormLabel" style={{marginTop: '36px'}}>이메일</div>
+                    <p>{email}</p>
+                </div>
+                <div className="ProfileEditFormLabel">닉네임</div>
+                <NicknameInputField
+                    value={nickname}
+                    onChange={handleNicknameChange}
+                    placeholder="닉네임을 입력해주세요"
                 />
-            </div>
-            <div className="Text14" onClick={showModal}
-                 style={{ marginTop: '12px', display: 'block', textAlign: 'center', cursor: 'pointer' }}>회원 탈퇴</div>
-            {showToast && (
-                <div className="ToastMessageContainer">
-                    <ToastMessage
-                        label="수정완료"
+                <div className="ProfileSubmitBtn">
+                    <Buttons.SubmitBtn
+                        label={"수정하기"}
+                        type="submit"
                     />
                 </div>
-            )}
-            <Modal
-                isVisible={isModalVisible}
-                ModalLabel="회원탈퇴 하시겠습니까?"
-                ModalContent="작성된 게시글과 댓글은 삭제됩니다."
-                onClose={closeModal}
-                onConfirm={handleAccountDelete}
-            />
+                <div className="Text14" onClick={showModal}
+                     style={{marginTop: '12px', display: 'block', textAlign: 'center', cursor: 'pointer'}}>회원 탈퇴
+                </div>
+                {showToast && (
+                    <div className="ToastMessageContainer">
+                        <ToastMessage
+                            label="수정완료"
+                        />
+                    </div>
+                )}
+                <Modal
+                    isVisible={isModalVisible}
+                    ModalLabel="회원탈퇴 하시겠습니까?"
+                    ModalContent="작성된 게시글과 댓글은 삭제됩니다."
+                    onClose={closeModal}
+                    onConfirm={handleAccountDelete}
+                />
         </form>
-    );
+);
 };
 
 export default ProfileEditForm;

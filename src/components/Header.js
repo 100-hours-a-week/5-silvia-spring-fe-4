@@ -18,6 +18,10 @@ function Header({ showBackButton, showUserProfile }) {
                     throw new Error('Failed to fetch user data');
                 }
                 const data = await response.json();
+                if (!data.users || !Array.isArray(data.users)) {
+                    console.error('Invalid or missing user data');
+                    return;
+                }
                 if (!userId) {
                     console.error('userId cookie is not set');
                     return;
@@ -25,7 +29,6 @@ function Header({ showBackButton, showUserProfile }) {
                 const user = data.users.find(u => u.userId.toString() === userId);
                 if (user) {
                     setProfileImage(user.profileimg);
-                } else {
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error);

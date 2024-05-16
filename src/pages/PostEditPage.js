@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import PostForm from '../components/PostForm';
+import axios from "axios";
 
 const PostEditPage = () => {
     const { postId } = useParams();
@@ -11,6 +12,7 @@ const PostEditPage = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [imageUrl, setImageUrl] = useState('');
+    // const [uploading, setUploading] = useState(false);
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -68,6 +70,62 @@ const PostEditPage = () => {
         }
     };
 
+
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        if (file && postId) {
+            const formData = new FormData();
+            formData.append('postImage', file);
+
+            try {
+                const response = await axios({
+                    method: 'put',
+                    url: `http://localhost:3001/api/posts/${postId}`,
+                    data: formData,
+                    withCredentials: true,
+                });
+
+                if (response.status !== 200) {
+                    throw new Error('Failed to upload image');
+                }
+                const result = response.data;
+                setImageUrl(result.profileimg);
+            } catch (error) {
+                console.error('Error uploading image:', error);
+                alert('이미지 업로드 중 오류가 발생했습니다.');
+            }
+        }
+    };
+
+
+
+    // 이미지수정
+    // const handleImageUpload = async (event) => {
+    //     const file = event.target.files[0];
+    //     if (!file) {
+    //         alert('Please select a file.');
+    //         return;
+    //     }
+    //
+    //     const formData = new FormData();
+    //     formData.append('postImage', file);
+    //
+    //     try {
+    //         setUploading(true);
+    //         const response = await axios.post(`http://localhost:3001/api/posts/${postId}/postimage`, formData);
+    //         handleImageUrlChange(response.data.postImage);
+    //         setUploading(false);
+    //     } catch (error) {
+    //         console.error('Failed to upload image:', error);
+    //         alert(`Failed to upload image: ${error.response ? (error.response.data || error.response.statusText) : 'Server error'}`);
+    //         setUploading(false);
+    //     }
+    // };
+
+
+
+
+
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -83,6 +141,7 @@ const PostEditPage = () => {
     return (
         <div className="PostEditPage">
             <PostForm
+                postId={postId} // Pass postId here
                 TitleValue={title}
                 ContentValue={content}
                 ImageUrlValue={imageUrl}
@@ -90,6 +149,8 @@ const PostEditPage = () => {
                 onContentChange={handleContentChange}
                 onImageUrlChange={handleImageUrlChange}
                 onSubmit={handleSubmit}
+                onImageUpload={handleImageUpload}
+                // isUploading={uploading}
             />
         </div>
     );

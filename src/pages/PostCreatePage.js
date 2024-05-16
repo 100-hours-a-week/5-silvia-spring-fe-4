@@ -7,11 +7,34 @@ const PostCreatePage = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [imageUrl, setImageUrl] = useState('');
+    const [uploading, setUploading] = useState(false);
     const navigate = useNavigate();
 
     const handleTitleChange = (e) => setTitle(e.target.value);
     const handleContentChange = (e) => setContent(e.target.value);
     const handleImageUrlChange = (url) => setImageUrl(url);
+
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        if (!file) {
+            alert('Please select a file.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('postImage', file);
+
+        try {
+            setUploading(true);
+            const response = await axios.post('http://localhost:3001/api/posts/image', formData);
+            handleImageUrlChange(response.data.postImage);
+            setUploading(false);
+        } catch (error) {
+            console.error('Failed to upload image:', error);
+            alert(`Failed to upload image: ${error.response ? (error.response.data || error.response.statusText) : 'Server error'}`);
+            setUploading(false);
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,18 +60,18 @@ const PostCreatePage = () => {
         }
     };
 
-
     return (
         <div className="PostCreatePage">
             <div className="Text24">게시글 작성</div>
             <PostForm
                 TitleValue={title}
                 ContentValue={content}
-                ImageUrlValue={imageUrl}
                 onTitleChange={handleTitleChange}
                 onContentChange={handleContentChange}
                 onImageUrlChange={handleImageUrlChange}
                 onSubmit={handleSubmit}
+                onImageUpload={handleImageUpload}
+                isUploading={uploading}
             />
         </div>
     );

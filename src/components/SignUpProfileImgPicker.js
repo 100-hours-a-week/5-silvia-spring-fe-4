@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ProfileImgPicker = ({ userId }) => {
+const SignUpProfileImgPicker = ({ userId }) => {
     const [profileImage, setProfileImage] = useState(null);
 
     useEffect(() => {
@@ -32,25 +32,29 @@ const ProfileImgPicker = ({ userId }) => {
 
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
-        if (file && userId) {
-            const formData = new FormData();
-            formData.append('profileimg', file);
+        if (!file) {
+            console.error("No file selected");
+            return;
+        }
 
-            try {
-                const response = await fetch(`http://localhost:3001/api/accounts/${userId}/profileimg`, {
-                    method: 'POST',
-                    body: formData,
-                    credentials: 'include',
-                });
+        const formData = new FormData();
+        formData.append('profileimg', file);
 
-                if (!response.ok) {
-                    throw new Error('Failed to upload image');
-                }
-                const result = await response.json();
-                setProfileImage(result.profileimg); // Update the profile image after successful upload
-            } catch (error) {
-                console.error('Error uploading image:', error);
+        try {
+            const response = await fetch(`http://localhost:3001/api/register`, {
+                method: 'POST',
+                body: formData,
+                credentials: 'include',
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Failed to upload image: ${errorText}`);
             }
+            const result = await response.json();
+            setProfileImage(result.profileimg); // Update the profile image after successful upload
+        } catch (error) {
+            console.error('Error uploading image:', error);
         }
     };
 
@@ -68,4 +72,4 @@ const ProfileImgPicker = ({ userId }) => {
     );
 };
 
-export default ProfileImgPicker;
+export default SignUpProfileImgPicker;

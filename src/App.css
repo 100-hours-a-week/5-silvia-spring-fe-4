@@ -1039,3 +1039,49 @@ button[type='PostImageUploadBtn'] {
 /*  transition: opacity 0.3s ease;*/
 /*  padding-top: 5px;*/
 /*}*/
+
+
+.profile-img-picker .upload-button {
+  display: inline-block;
+  width: 149px;
+  height: 149px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  line-height: 149px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.ImgBlackFilter{
+  width: 149px;
+  height: 149px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+
+.ImgBlackFilter:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+  opacity: 1;
+}
+
+.ProfilePickerLabel {
+  opacity: 0;
+  visibility: hidden;
+  font-size: 18px;
+  font-weight: 700;
+  width: 52px;
+  height: 27px;
+  border-radius: 25px;
+  border: 1px solid white;
+  padding: 5px 13px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.upload-button:hover .ProfilePickerLabel {
+  opacity: 1;
+  visibility: visible;
+}
