@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { EmailInputField, PasswordInputField, PasswordConfirmInputField, NicknameInputField } from './InputField';
 
@@ -15,7 +14,6 @@ const SignUpForm = () => {
     const [nicknameError, setNicknameError] = useState('');
     const [uploadError, setUploadError] = useState('');
     const [previewSrc, setPreviewSrc] = useState('');
-    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -37,9 +35,8 @@ const SignUpForm = () => {
         validateNickname(e.target.value);
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const file = e.target.files[0];
-        setSelectedFile(file);
 
         // Display a preview of the selected image
         const reader = new FileReader();
@@ -47,16 +44,19 @@ const SignUpForm = () => {
             setPreviewSrc(reader.result);
         };
         reader.readAsDataURL(file);
+
+        // Automatically upload the image
+        await handleUpload(file);
     };
 
-    const handleUpload = async () => {
-        if (!selectedFile) {
+    const handleUpload = async (file) => {
+        if (!file) {
             setUploadError('파일을 선택해주세요.');
             return;
         }
 
         const formData = new FormData();
-        formData.append('profileimg', selectedFile);
+        formData.append('profileimg', file);
 
         try {
             const response = await fetch('http://localhost:3001/api/register/profileimg', {
@@ -67,7 +67,6 @@ const SignUpForm = () => {
             if (response.ok) {
                 const data = await response.json();
                 setProfileImg(data.profileimg);
-                alert(`이미지가 성공적으로 업로드되었습니다: ${data.profileimg}`);
                 setUploadError('');
             } else {
                 const errorText = await response.text();
@@ -144,7 +143,6 @@ const SignUpForm = () => {
         validateNickname(nickname);
 
         if (!emailError && !passwordError && !confirmPasswordError && !nicknameError) {
-            // Proceed with form submission (e.g., send data to the server)
             try {
                 const response = await fetch('http://localhost:3001/api/register', {
                     method: 'POST',
@@ -176,10 +174,60 @@ const SignUpForm = () => {
             <div className="SignUpProfilePickerContainer">
                 <div className="SignUpProfileLabel"><span>프로필 사진</span></div>
                 <div className="SignUpProfileImgPicker">
-                    <input type="file" accept="image/*" onChange={handleFileChange} />
-                    {previewSrc && <img src={previewSrc} alt="Profile Preview" style={{ width: '100px', height: '100px' }} />}
-                    {uploadError && <div style={{ color: 'red' }}>{uploadError}</div>}
-                    <button type="button" onClick={handleUpload}>이미지 업로드</button>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        id="profileImgInput"
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }}
+                    />
+                    <label htmlFor="profileImgInput" style={{
+                        width: '149px',
+                        height: '149px',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: '#C4C4C4',
+                        cursor: 'pointer',
+                        position: 'relative',
+                        overflow: 'hidden'
+                    }}>
+                        {previewSrc ? (
+                            <img
+                                src={previewSrc}
+                                alt="Profile Preview"
+                                style={{
+                                    width: '149px',
+                                    height: '149px',
+                                    borderRadius: '50%',
+                                    objectFit: 'cover',
+                                }}
+                            />
+                        ) : (
+                            <div style={{ width: '24px', height: '24px', position: 'relative' }}>
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    width: '1.2px',
+                                    height: '24px',
+                                    backgroundColor: 'black',
+                                    transform: 'translate(-50%, -50%)'
+                                }}></div>
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    width: '24px',
+                                    height: '1.2px',
+                                    backgroundColor: 'black',
+                                    transform: 'translate(-50%, -50%)'
+                                }}></div>
+                            </div>
+                        )}
+                    </label>
+                    {uploadError && <div style={{ color: 'red', marginTop: '10px' }}>{uploadError}</div>}
                 </div>
             </div>
 
