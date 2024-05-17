@@ -1,19 +1,21 @@
+
 import React, { useState } from 'react';
 import { EmailInputField, PasswordInputField, PasswordConfirmInputField, NicknameInputField } from './InputField';
-// import ProfileImgPicker from './ProfileImgPicker';
-import SignUpProfileImgPicker from "./SignUpProfileImgPicker";
 
 const SignUpForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [nickname, setNickname] = useState('');
-    const [profileImageUrl, setProfileImageUrl] = useState('');
+    const [profileImg, setProfileImg] = useState('');
 
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [nicknameError, setNicknameError] = useState('');
+    const [uploadError, setUploadError] = useState('');
+    const [previewSrc, setPreviewSrc] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -35,8 +37,46 @@ const SignUpForm = () => {
         validateNickname(e.target.value);
     };
 
-    const handleProfileImageUrlChange = (url) => {
-        setProfileImageUrl(url);
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setSelectedFile(file);
+
+        // Display a preview of the selected image
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setPreviewSrc(reader.result);
+        };
+        reader.readAsDataURL(file);
+    };
+
+    const handleUpload = async () => {
+        if (!selectedFile) {
+            setUploadError('파일을 선택해주세요.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('profileimg', selectedFile);
+
+        try {
+            const response = await fetch('http://localhost:3001/api/register/profileimg', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setProfileImg(data.profileimg);
+                alert(`이미지가 성공적으로 업로드되었습니다: ${data.profileimg}`);
+                setUploadError('');
+            } else {
+                const errorText = await response.text();
+                setUploadError(`이미지 업로드 실패: ${errorText}`);
+            }
+        } catch (error) {
+            console.error('Error uploading the image:', error);
+            setUploadError('이미지 업로드 중 오류가 발생했습니다.');
+        }
     };
 
     const validateEmail = async (email) => {
@@ -61,7 +101,6 @@ const SignUpForm = () => {
             }
         }
     };
-
 
     const validatePassword = (password) => {
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,20}$/;
@@ -96,12 +135,9 @@ const SignUpForm = () => {
         }
     };
 
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate all fields before submission
         await validateEmail(email);
         validatePassword(password);
         validateConfirmPassword(password, confirmPassword);
@@ -115,7 +151,7 @@ const SignUpForm = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ email, password, nickname, profileimg: profileImageUrl }),
+                    body: JSON.stringify({ email, password, nickname, profileimg: profileImg }),
                 });
 
                 if (response.ok) {
@@ -139,11 +175,13 @@ const SignUpForm = () => {
 
             <div className="SignUpProfilePickerContainer">
                 <div className="SignUpProfileLabel"><span>프로필 사진</span></div>
-                <SignUpProfileImgPicker
-                    onImageUrlChange={handleProfileImageUrlChange}
-                />
+                <div className="SignUpProfileImgPicker">
+                    <input type="file" accept="image/*" onChange={handleFileChange} />
+                    {previewSrc && <img src={previewSrc} alt="Profile Preview" style={{ width: '100px', height: '100px' }} />}
+                    {uploadError && <div style={{ color: 'red' }}>{uploadError}</div>}
+                    <button type="button" onClick={handleUpload}>이미지 업로드</button>
+                </div>
             </div>
-
 
             <EmailInputField
                 label="이메일*"
