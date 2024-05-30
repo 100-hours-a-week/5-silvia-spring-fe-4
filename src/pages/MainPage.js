@@ -5,6 +5,7 @@ import PostCard from "../components/PostCard";
 import { useNavigate } from 'react-router-dom';
 import * as Buttons  from '../components/Buttons';
 
+
 const MainPage = () => {
     const navigate = useNavigate();
     const creteClick = () => {

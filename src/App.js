@@ -8,6 +8,7 @@ import Profile from "./pages/ProfileEditPage";
 import Edit from "./pages/PostEditPage";
 import Create from "./pages/PostCreatePage";
 import Header from "./components/Header";
+// import mainBackground from './assets/main_background.png';
 import './App.css';
 import { ROUTES } from './config/routes'; // 경로 상수를 임포트
 

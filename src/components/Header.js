@@ -85,7 +85,9 @@ function Header({ showBackButton, showUserProfile }) {
 
     return (
         <div className="Header">
+
             <div className="HeaderContent">
+
                 <div className="HeaderEmptyBox">
                     {showBackButton && <button className="BackBtn" onClick={handleBackButtonClick}>〈</button>}
                 </div>
@@ -93,7 +95,7 @@ function Header({ showBackButton, showUserProfile }) {
                 <div className="HeaderEmptyBox">
                     {showUserProfile && (
                         <div className="UserProfile" onClick={toggleDropdown}>
-                            {profileImage && <img src={profileImage} alt="User Profile" className="UserProfile" />}
+                            {profileImage && <img src={profileImage} alt="User Profile" className="UserProfile"/>}
                             <div id="myDropdown" className={`dropdown-content ${isDropdownVisible ? 'show' : ''}`}>
                                 <a href={userId ? `/profile/edit/${userId}` : '#'}>회원정보 수정</a>
                                 <a href={userId ? `/users/${userId}/password` : '#'}>비밀번호 수정</a>
