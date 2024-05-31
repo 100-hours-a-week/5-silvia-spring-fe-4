@@ -1,4 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Poor+Story&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Skranji:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dokdo&family=Kirang+Haerang&family=Skranji:wght@400;700&display=swap');
+
+.landing-background {
+  background-image: url('https://lh3.google.com/u/0/d/1TDP8n3p0V19ToPkTpuS6Om6XHNFAvRhG=w1920-h968-iv1');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.default-background {
+  background-image: url('https://lh3.googleusercontent.com/fife/ALs6j_FmdsUHLyWuW2C8jbjDCTi-97WCPIpoVvOYwxlCqBh0GfttrbD2weMw6WKmQjmmrg41yGoLSZZDX83Nj1vyJiGsOG8gZucs9t-U3c1P0lTZyiDSjDeCd1r9TH8_OJnfne4m8zOUNg_cr-r_l2kiptwnuFtGz3mboYOTwqfvEgGoyt3pob8vm1MqrDKhCKtm5veLsr-5FgLKkcPQmW7KMZPlFmAvV6XujTLmGNNXvP_j0vNzvzounl8QfrsjFzu2WDTtvj_6SWkMc79GlmU82iViL9b4zpprldbxDKGZdG6Vbdmoyjnp3bu3WeslZgwXTyLhABL8V-W_v57box6d6K7o6Mqa6GH-Nr0eu_2c_7Z9MOrJSJc1Lg0O92Q3H1vVyJwvd8TZjzRhHi-vF6BWJJjZ-_-w1VndpGu8Z5Yy1Q-qjgGFT2N2oq6oNctiZXNwMghFfts0o2mQkkAd_pcbagh6d5XG59uOvRP1EB7-Sez8pYGOC5mIGCtrwNjcjhrTEHEi2NnkOU7KcJJJA6IW4QB2pGGw_GhVGUn7PQSG8iF7PumQ5G5HNJghRpI15LXBZm9_uKnld1-zv7Knu6-xLnC_gx0tvnZ7i9GsLOukof9C8TnJmGYr0P6_5MNmkNYSsdzs59KUD2kEiC4HKqxxlGbde19ObuUOsKTxq0sdxFIA_MZQKxi3Tjv5MdPy5VHBF_phZ8IRMjqkPkFXrgvAI68SB8rTTTAVIwg0AH9Q8QJclgt0NQWizLBYRlNg781f0YCZQiDO2xvfkClX6l5-dSsiM0nuKNvQRIEZG1kgBiANQE1yEVhxl8FNf6txhZO5Jvhu_RKnBPtz8MoKTIyOzmWDQfuC-ijPq3fwgCfDabSP99n7FYAuxuD3wfL_QB9an5nJEcGBrrU_F4388uCv8aQU2dNbmuoHf35wu2kf-g9O9qaNTZT6-_24PY0vgwMGEaGy7u5biCqPFthmOZgW2aLVWaXH012p2Ec7mDMW8C9s5Ot6NW1MqnI2gR4Vz2wsByumZuFWAXZu-TtcziNJl-mBYBlHvf6fxSI4tD6O7GHjnmW_6bUTjiSZf5-o1h7_hI_D8RNsdRRoOsGoNzeK5CgiVlDBy7dqlSa1qwuTNwhUcdGvSbLMzvDBrnSvoi_oMEfHwQSOGdlTFRFUNq-FTjUu-Tvl8sNpEeJetFKFnlu4PuO7AOm_6BjynDumi6UBJodDsxgSJ8tMgCuj_IQA2rIKPCi7GjV1by_bxUHBLlaBeQjs1P_MnkU3w3Xix4n9ABaLYuRU5raJcTLoRiWWAfXeuB2OJhUIqc1tUlKSpvgT1VkjoQYRq-MLdkCuo8XuiTflyJD7FEZ4qFbI-1XiRH1yqx7rdASfs0kRG4XRcbCqjBgtAxHR_UvIvfx18mHLBKhYjfVt_PhXlFv2GWtBV2T2Bn3HW-9OCNXFrnHKQnjTEmktnLuOu0zTSRiCiJ7IHpnJQ3Z6oPJleEMEGFXhobQb_sbYqU3GXvm3PGlxhOzA_kav46zGK9_-ks370RT6ngm9P6cFEONckhdATl8x8qY7b6vMDrOQVL7wTlulRSIpWDTbjO9LeBU6betQezoqr8UyuNkMxObbGEVUzdxmZLjTJuRp4NZrtSexJnKfrmzDXkVAUv1aljt6hUlen3eq-wyQP--Y2tcXTLFYgjIN-q0Esf8q-2SLUkgVmNU67QtTb-x-iFp-ifblO-tZ-yBnHA=w3024-h1714');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.LandingPage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /*background-color: #f0f0f0;*/
+}
+
+LandingText {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.LandingText img {
+  width: 90%;
+  height: auto;
+  opacity: 0;
+  animation: fadeIn 5s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -6,9 +61,9 @@
   align-items: center; /* 세로 중앙 정렬 */
   min-height: 100vh;
   width: 100%; /* 추가: 너비를 100%로 설정 */
-  background-image: url('https://lh3.googleusercontent.com/fife/ALs6j_FmdsUHLyWuW2C8jbjDCTi-97WCPIpoVvOYwxlCqBh0GfttrbD2weMw6WKmQjmmrg41yGoLSZZDX83Nj1vyJiGsOG8gZucs9t-U3c1P0lTZyiDSjDeCd1r9TH8_OJnfne4m8zOUNg_cr-r_l2kiptwnuFtGz3mboYOTwqfvEgGoyt3pob8vm1MqrDKhCKtm5veLsr-5FgLKkcPQmW7KMZPlFmAvV6XujTLmGNNXvP_j0vNzvzounl8QfrsjFzu2WDTtvj_6SWkMc79GlmU82iViL9b4zpprldbxDKGZdG6Vbdmoyjnp3bu3WeslZgwXTyLhABL8V-W_v57box6d6K7o6Mqa6GH-Nr0eu_2c_7Z9MOrJSJc1Lg0O92Q3H1vVyJwvd8TZjzRhHi-vF6BWJJjZ-_-w1VndpGu8Z5Yy1Q-qjgGFT2N2oq6oNctiZXNwMghFfts0o2mQkkAd_pcbagh6d5XG59uOvRP1EB7-Sez8pYGOC5mIGCtrwNjcjhrTEHEi2NnkOU7KcJJJA6IW4QB2pGGw_GhVGUn7PQSG8iF7PumQ5G5HNJghRpI15LXBZm9_uKnld1-zv7Knu6-xLnC_gx0tvnZ7i9GsLOukof9C8TnJmGYr0P6_5MNmkNYSsdzs59KUD2kEiC4HKqxxlGbde19ObuUOsKTxq0sdxFIA_MZQKxi3Tjv5MdPy5VHBF_phZ8IRMjqkPkFXrgvAI68SB8rTTTAVIwg0AH9Q8QJclgt0NQWizLBYRlNg781f0YCZQiDO2xvfkClX6l5-dSsiM0nuKNvQRIEZG1kgBiANQE1yEVhxl8FNf6txhZO5Jvhu_RKnBPtz8MoKTIyOzmWDQfuC-ijPq3fwgCfDabSP99n7FYAuxuD3wfL_QB9an5nJEcGBrrU_F4388uCv8aQU2dNbmuoHf35wu2kf-g9O9qaNTZT6-_24PY0vgwMGEaGy7u5biCqPFthmOZgW2aLVWaXH012p2Ec7mDMW8C9s5Ot6NW1MqnI2gR4Vz2wsByumZuFWAXZu-TtcziNJl-mBYBlHvf6fxSI4tD6O7GHjnmW_6bUTjiSZf5-o1h7_hI_D8RNsdRRoOsGoNzeK5CgiVlDBy7dqlSa1qwuTNwhUcdGvSbLMzvDBrnSvoi_oMEfHwQSOGdlTFRFUNq-FTjUu-Tvl8sNpEeJetFKFnlu4PuO7AOm_6BjynDumi6UBJodDsxgSJ8tMgCuj_IQA2rIKPCi7GjV1by_bxUHBLlaBeQjs1P_MnkU3w3Xix4n9ABaLYuRU5raJcTLoRiWWAfXeuB2OJhUIqc1tUlKSpvgT1VkjoQYRq-MLdkCuo8XuiTflyJD7FEZ4qFbI-1XiRH1yqx7rdASfs0kRG4XRcbCqjBgtAxHR_UvIvfx18mHLBKhYjfVt_PhXlFv2GWtBV2T2Bn3HW-9OCNXFrnHKQnjTEmktnLuOu0zTSRiCiJ7IHpnJQ3Z6oPJleEMEGFXhobQb_sbYqU3GXvm3PGlxhOzA_kav46zGK9_-ks370RT6ngm9P6cFEONckhdATl8x8qY7b6vMDrOQVL7wTlulRSIpWDTbjO9LeBU6betQezoqr8UyuNkMxObbGEVUzdxmZLjTJuRp4NZrtSexJnKfrmzDXkVAUv1aljt6hUlen3eq-wyQP--Y2tcXTLFYgjIN-q0Esf8q-2SLUkgVmNU67QtTb-x-iFp-ifblO-tZ-yBnHA=w3024-h1714');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 
 }
 
@@ -35,18 +90,21 @@ button {
 }
 
 .Header {
-  width: 100%;
+  width: 600px;
   height: 103px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  font-family: "Poor Story", system-ui;
-  color: black;
-  border-bottom: 1px solid black;
-
+  font-size: 40px;
+  font-family: "Kirang Haerang", system-ui;
+  color: #829577;
+  /*background: rgba(255, 255, 255, 0.5); */
+  margin-top: 20px;
+  border-radius: 20px;
+  /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
+
 
 
 .HeaderContent {
@@ -94,6 +152,8 @@ button {
   background-color: #e9e9e9;
 }
 
+
+
 /* 추가 */
 .show {
   display: block;
@@ -126,6 +186,15 @@ button {
   background-size: cover;
   border: none;
   cursor: pointer;
+}
+
+.SearchContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /*height: 39px;*/
+  margin: 20px 0px;
 }
 
 .Text14 {
@@ -297,7 +366,7 @@ button {
   height: 39px;
   border-radius: 16px;
   font-size: 16px;
-  background-color: #ACA0EB;
+  background-color: #C2CFA5;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -306,7 +375,7 @@ button {
 }
 
 .CreateBtn:hover {
-  background-color: #7F6AEE;
+  background-color: #829577;
 }
 
 /*.PostBtn {*/
@@ -423,7 +492,8 @@ button {
   background-color: transparent;
   border: 1px solid;
   border-radius: 8px;
-  border-color: #ACA0EB;
+  border-color: #C2CFA5;
+  background: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   margin-left: 8px;
   color: black;

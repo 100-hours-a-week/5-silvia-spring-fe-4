@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
+import LANDING from "./pages/LandingPage";
 import Home from "./pages/MainPage";
 import Board from "./pages/PostPage";
 import Login from "./pages/LoginPage";
@@ -8,7 +9,6 @@ import Profile from "./pages/ProfileEditPage";
 import Edit from "./pages/PostEditPage";
 import Create from "./pages/PostCreatePage";
 import Header from "./components/Header";
-// import mainBackground from './assets/main_background.png';
 import './App.css';
 import { ROUTES } from './config/routes'; // 경로 상수를 임포트
 
@@ -16,7 +16,8 @@ function App() {
     const location = useLocation();
 
     const headerConfig = {
-        '/': { showBackButton: false, showUserProfile: true },
+        '/': { showBackButton: false, showUserProfile: false },
+        '/main': { showBackButton: false, showUserProfile: true },
         '/post': { showBackButton: true, showUserProfile: true },
         '/login': { showBackButton: false, showUserProfile: false },
         '/register': { showBackButton: true, showUserProfile: false },
@@ -35,22 +36,30 @@ function App() {
 
     const currentHeaderConfig = getCurrentHeaderConfig(location.pathname);
 
+    // 현재 경로에 따라 배경 이미지 클래스 선택
+    const getBackgroundClass = (pathname) => {
+        if (pathname === ROUTES.LANDING) return 'landing-background';
+        return 'default-background';
+    };
+
+    const backgroundClass = getBackgroundClass(location.pathname);
+
     return (
-        <div className="App">
+        <div className={`App ${backgroundClass}`}>
             <Header showBackButton={currentHeaderConfig.showBackButton} showUserProfile={currentHeaderConfig.showUserProfile} />
             <div className="CenteredContent" style={{marginBottom: '50px'}}>
                 {/* Content Here */}
-
-            <Routes>
-                <Route path={ROUTES.HOME} element={<Home />} />
-                <Route path={ROUTES.POST} element={<Board />} />
-                <Route path={ROUTES.LOGIN} element={<Login />} />
-                <Route path={ROUTES.REGISTER} element={<SignUp />} />
-                <Route path={ROUTES.PASSWORD_CHANGE} element={<Password />} />
-                <Route path={ROUTES.PROFILE_EDIT} element={<Profile />} />
-                <Route path={ROUTES.BOARD_EDIT} element={<Edit />} />
-                <Route path={ROUTES.BOARD_CREATE} element={<Create />} />
-            </Routes>
+                <Routes>
+                    <Route path={ROUTES.LANDING} element={<LANDING />} />
+                    <Route path={ROUTES.HOME} element={<Home />} />
+                    <Route path={ROUTES.POST} element={<Board />} />
+                    <Route path={ROUTES.LOGIN} element={<Login />} />
+                    <Route path={ROUTES.REGISTER} element={<SignUp />} />
+                    <Route path={ROUTES.PASSWORD_CHANGE} element={<Password />} />
+                    <Route path={ROUTES.PROFILE_EDIT} element={<Profile />} />
+                    <Route path={ROUTES.BOARD_EDIT} element={<Edit />} />
+                    <Route path={ROUTES.BOARD_CREATE} element={<Create />} />
+                </Routes>
             </div>
         </div>
     );

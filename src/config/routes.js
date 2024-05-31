@@ -1,5 +1,6 @@
 export const ROUTES = {
-    HOME: '/',
+    LANDING: '/',
+    HOME: '/main',
     POST: '/post/:postId',
     LOGIN: '/login',
     REGISTER: '/register',
