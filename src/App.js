@@ -10,6 +10,7 @@ import Edit from "./pages/PostEditPage";
 import Create from "./pages/PostCreatePage";
 import Header from "./components/Header";
 import './App.css';
+import React from 'react';
 import { ROUTES } from './config/routes'; // 경로 상수를 임포트
 
 function App() {
@@ -39,13 +40,14 @@ function App() {
     // 현재 경로에 따라 배경 이미지 클래스 선택
     const getBackgroundClass = (pathname) => {
         if (pathname === ROUTES.LANDING) return 'landing-background';
+        if (pathname === ROUTES.HOME) return 'main-background';
         return 'default-background';
     };
 
     const backgroundClass = getBackgroundClass(location.pathname);
 
     return (
-        <div className={`App ${backgroundClass}`}>
+        <div className={`App ${backgroundClass} custom-cursor`}>
             <Header showBackButton={currentHeaderConfig.showBackButton} showUserProfile={currentHeaderConfig.showUserProfile} />
             <div className="CenteredContent" style={{marginBottom: '50px'}}>
                 {/* Content Here */}

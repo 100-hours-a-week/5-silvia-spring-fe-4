@@ -90,7 +90,9 @@ function Header({ showBackButton, showUserProfile }) {
                 <div className="HeaderEmptyBox">
                     {showBackButton && <button className="BackBtn" onClick={handleBackButtonClick}>〈</button>}
                 </div>
-                <div className="HeaderText" onClick={goToMainPage}>🥑 AvoWorld</div>
+                <div className="HeaderText" onClick={goToMainPage}>
+                    <span role="img" aria-label="avocado">🥑</span> AvoWorld
+                </div>
                 <div className="HeaderEmptyBox">
                     {showUserProfile && (
                         <div className="UserProfile" onClick={toggleDropdown}>

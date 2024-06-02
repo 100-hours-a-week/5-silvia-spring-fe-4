@@ -3,15 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import * as PostComponents from './PostComponents';
 import SearchBar from './SearchBar';
 import * as Buttons from '../components/Buttons';
-import Pagination from './Pagination';
 
 const PostCard = () => {
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const postsPerPage = 3;
 
     const navigate = useNavigate();
     const createClick = () => {
@@ -56,16 +53,7 @@ const PostCard = () => {
             post.postTitle.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredPosts(filtered);
-        setCurrentPage(1); // Reset to first page on new search
     }, [searchTerm, posts]);
-
-    // Get current posts
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
-
-    // Handle page change
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     const navigateToPost = (postId) => {
         navigate(`/post/${postId}`);
@@ -81,7 +69,7 @@ const PostCard = () => {
                 />
             </div>
             <div className="PostCardsContainer" style={{ cursor: 'pointer' }}>
-                {currentPosts.map((post) => {
+                {filteredPosts.map((post) => {
                     const { postId, authorId, postTitle, views, likes, comments, date } = post;
                     const commentCount = comments.length;
                     const likeCommentViewsStr = `좋아요 ${likes} 댓글 ${commentCount} 조회수 ${views}`;
@@ -108,12 +96,6 @@ const PostCard = () => {
                     );
                 })}
             </div>
-            <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={filteredPosts.length}
-                currentPage={currentPage}
-                paginate={paginate}
-            />
         </div>
     );
 };

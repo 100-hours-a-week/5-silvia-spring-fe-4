@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Poor+Story&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Skranji:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dokdo&family=Kirang+Haerang&family=Skranji:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
+
+.custom-cursor {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🥑</text></svg>") 16 0, auto; /*!emojicursor.app*/
+}
 
 .landing-background {
   background-image: url('https://lh3.google.com/u/0/d/1TDP8n3p0V19ToPkTpuS6Om6XHNFAvRhG=w1920-h968-iv1');
@@ -8,14 +13,29 @@
   background-position: center;
   height: 100vh;
   width: 100%;
+  background-position: left center;
+  /*background-position: center -10%;*/
+  overflow: hidden;
+}
+
+.main-background {
+  background-image: url('https://lh3.googleusercontent.com/fife/ALs6j_FmdsUHLyWuW2C8jbjDCTi-97WCPIpoVvOYwxlCqBh0GfttrbD2weMw6WKmQjmmrg41yGoLSZZDX83Nj1vyJiGsOG8gZucs9t-U3c1P0lTZyiDSjDeCd1r9TH8_OJnfne4m8zOUNg_cr-r_l2kiptwnuFtGz3mboYOTwqfvEgGoyt3pob8vm1MqrDKhCKtm5veLsr-5FgLKkcPQmW7KMZPlFmAvV6XujTLmGNNXvP_j0vNzvzounl8QfrsjFzu2WDTtvj_6SWkMc79GlmU82iViL9b4zpprldbxDKGZdG6Vbdmoyjnp3bu3WeslZgwXTyLhABL8V-W_v57box6d6K7o6Mqa6GH-Nr0eu_2c_7Z9MOrJSJc1Lg0O92Q3H1vVyJwvd8TZjzRhHi-vF6BWJJjZ-_-w1VndpGu8Z5Yy1Q-qjgGFT2N2oq6oNctiZXNwMghFfts0o2mQkkAd_pcbagh6d5XG59uOvRP1EB7-Sez8pYGOC5mIGCtrwNjcjhrTEHEi2NnkOU7KcJJJA6IW4QB2pGGw_GhVGUn7PQSG8iF7PumQ5G5HNJghRpI15LXBZm9_uKnld1-zv7Knu6-xLnC_gx0tvnZ7i9GsLOukof9C8TnJmGYr0P6_5MNmkNYSsdzs59KUD2kEiC4HKqxxlGbde19ObuUOsKTxq0sdxFIA_MZQKxi3Tjv5MdPy5VHBF_phZ8IRMjqkPkFXrgvAI68SB8rTTTAVIwg0AH9Q8QJclgt0NQWizLBYRlNg781f0YCZQiDO2xvfkClX6l5-dSsiM0nuKNvQRIEZG1kgBiANQE1yEVhxl8FNf6txhZO5Jvhu_RKnBPtz8MoKTIyOzmWDQfuC-ijPq3fwgCfDabSP99n7FYAuxuD3wfL_QB9an5nJEcGBrrU_F4388uCv8aQU2dNbmuoHf35wu2kf-g9O9qaNTZT6-_24PY0vgwMGEaGy7u5biCqPFthmOZgW2aLVWaXH012p2Ec7mDMW8C9s5Ot6NW1MqnI2gR4Vz2wsByumZuFWAXZu-TtcziNJl-mBYBlHvf6fxSI4tD6O7GHjnmW_6bUTjiSZf5-o1h7_hI_D8RNsdRRoOsGoNzeK5CgiVlDBy7dqlSa1qwuTNwhUcdGvSbLMzvDBrnSvoi_oMEfHwQSOGdlTFRFUNq-FTjUu-Tvl8sNpEeJetFKFnlu4PuO7AOm_6BjynDumi6UBJodDsxgSJ8tMgCuj_IQA2rIKPCi7GjV1by_bxUHBLlaBeQjs1P_MnkU3w3Xix4n9ABaLYuRU5raJcTLoRiWWAfXeuB2OJhUIqc1tUlKSpvgT1VkjoQYRq-MLdkCuo8XuiTflyJD7FEZ4qFbI-1XiRH1yqx7rdASfs0kRG4XRcbCqjBgtAxHR_UvIvfx18mHLBKhYjfVt_PhXlFv2GWtBV2T2Bn3HW-9OCNXFrnHKQnjTEmktnLuOu0zTSRiCiJ7IHpnJQ3Z6oPJleEMEGFXhobQb_sbYqU3GXvm3PGlxhOzA_kav46zGK9_-ks370RT6ngm9P6cFEONckhdATl8x8qY7b6vMDrOQVL7wTlulRSIpWDTbjO9LeBU6betQezoqr8UyuNkMxObbGEVUzdxmZLjTJuRp4NZrtSexJnKfrmzDXkVAUv1aljt6hUlen3eq-wyQP--Y2tcXTLFYgjIN-q0Esf8q-2SLUkgVmNU67QtTb-x-iFp-ifblO-tZ-yBnHA=w3024-h1714');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /*height: 100vh;*/
+  width: 100%;
+  min-height: 100vh;
 }
 
 .default-background {
   background-image: url('https://lh3.googleusercontent.com/fife/ALs6j_FmdsUHLyWuW2C8jbjDCTi-97WCPIpoVvOYwxlCqBh0GfttrbD2weMw6WKmQjmmrg41yGoLSZZDX83Nj1vyJiGsOG8gZucs9t-U3c1P0lTZyiDSjDeCd1r9TH8_OJnfne4m8zOUNg_cr-r_l2kiptwnuFtGz3mboYOTwqfvEgGoyt3pob8vm1MqrDKhCKtm5veLsr-5FgLKkcPQmW7KMZPlFmAvV6XujTLmGNNXvP_j0vNzvzounl8QfrsjFzu2WDTtvj_6SWkMc79GlmU82iViL9b4zpprldbxDKGZdG6Vbdmoyjnp3bu3WeslZgwXTyLhABL8V-W_v57box6d6K7o6Mqa6GH-Nr0eu_2c_7Z9MOrJSJc1Lg0O92Q3H1vVyJwvd8TZjzRhHi-vF6BWJJjZ-_-w1VndpGu8Z5Yy1Q-qjgGFT2N2oq6oNctiZXNwMghFfts0o2mQkkAd_pcbagh6d5XG59uOvRP1EB7-Sez8pYGOC5mIGCtrwNjcjhrTEHEi2NnkOU7KcJJJA6IW4QB2pGGw_GhVGUn7PQSG8iF7PumQ5G5HNJghRpI15LXBZm9_uKnld1-zv7Knu6-xLnC_gx0tvnZ7i9GsLOukof9C8TnJmGYr0P6_5MNmkNYSsdzs59KUD2kEiC4HKqxxlGbde19ObuUOsKTxq0sdxFIA_MZQKxi3Tjv5MdPy5VHBF_phZ8IRMjqkPkFXrgvAI68SB8rTTTAVIwg0AH9Q8QJclgt0NQWizLBYRlNg781f0YCZQiDO2xvfkClX6l5-dSsiM0nuKNvQRIEZG1kgBiANQE1yEVhxl8FNf6txhZO5Jvhu_RKnBPtz8MoKTIyOzmWDQfuC-ijPq3fwgCfDabSP99n7FYAuxuD3wfL_QB9an5nJEcGBrrU_F4388uCv8aQU2dNbmuoHf35wu2kf-g9O9qaNTZT6-_24PY0vgwMGEaGy7u5biCqPFthmOZgW2aLVWaXH012p2Ec7mDMW8C9s5Ot6NW1MqnI2gR4Vz2wsByumZuFWAXZu-TtcziNJl-mBYBlHvf6fxSI4tD6O7GHjnmW_6bUTjiSZf5-o1h7_hI_D8RNsdRRoOsGoNzeK5CgiVlDBy7dqlSa1qwuTNwhUcdGvSbLMzvDBrnSvoi_oMEfHwQSOGdlTFRFUNq-FTjUu-Tvl8sNpEeJetFKFnlu4PuO7AOm_6BjynDumi6UBJodDsxgSJ8tMgCuj_IQA2rIKPCi7GjV1by_bxUHBLlaBeQjs1P_MnkU3w3Xix4n9ABaLYuRU5raJcTLoRiWWAfXeuB2OJhUIqc1tUlKSpvgT1VkjoQYRq-MLdkCuo8XuiTflyJD7FEZ4qFbI-1XiRH1yqx7rdASfs0kRG4XRcbCqjBgtAxHR_UvIvfx18mHLBKhYjfVt_PhXlFv2GWtBV2T2Bn3HW-9OCNXFrnHKQnjTEmktnLuOu0zTSRiCiJ7IHpnJQ3Z6oPJleEMEGFXhobQb_sbYqU3GXvm3PGlxhOzA_kav46zGK9_-ks370RT6ngm9P6cFEONckhdATl8x8qY7b6vMDrOQVL7wTlulRSIpWDTbjO9LeBU6betQezoqr8UyuNkMxObbGEVUzdxmZLjTJuRp4NZrtSexJnKfrmzDXkVAUv1aljt6hUlen3eq-wyQP--Y2tcXTLFYgjIN-q0Esf8q-2SLUkgVmNU67QtTb-x-iFp-ifblO-tZ-yBnHA=w3024-h1714');
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  background-attachment: fixed;
+  /*height: 100vh;*/
   width: 100%;
+  min-height: 100vh;
 }
 
 .LandingPage {
@@ -24,17 +44,53 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-attachment: fixed;
   /*background-color: #f0f0f0;*/
 }
 
-LandingText {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+
+.LandingText {
+  position: absolute;
+  left: 170px; /* 왼쪽으로 정렬 */
+  top: 300px; /* 수직 중앙 정렬 */
+  transform: translateY(-50%);
+  color: white; /* 텍스트 색상, 필요에 따라 변경 */
+  z-index: 2;
 }
+
+.BlobImg {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 1000px;
+  height: 750px;
+  display: flex;
+  justify-content: center; /* 필요에 따라 조정 */
+  align-items: center; /* 필요에 따라 조정 */
+  animation: slideIn 5s forwards;
+}
+
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*LandingText {*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  position: relative;*/
+/*}*/
 
 .LandingText img {
   width: 90%;
@@ -54,6 +110,116 @@ LandingText {
   }
 }
 
+.LandingNavigation {
+  position: absolute; /* 부모 컨테이너의 하단에 고정 */
+  bottom: 0;
+  width: 1000px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://lh3.google.com/u/0/d/1oxpEV_WJ30edrPYy__dvFI4Pt8oZiAze=w3024-h1714-iv3');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Gamja Flower", sans-serif;
+  /*font-size: 80px;*/
+}
+
+nav {
+  display: flex;
+  gap: 80px;
+  margin-top: 80px;
+
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  /*padding: 10px 20px;*/
+  /*border: 1px solid #007bff;*/
+  /*border-radius: 4px;*/
+  /*transition: background-color 0.3s, color 0.3s;*/
+}
+
+.nav-link:hover {
+  font-size: 25px;
+  font-weight: bold; /* Make text bold */
+  /*text-decoration: underline;*/
+  color: #829577;
+
+}
+
+/*.nav-link:hover {*/
+/*  background-color: #007bff;*/
+/*  color: white;*/
+/*}*/
+
+.LandingNavigation img {
+  width: 100%; /* 컨테이너의 너비에 맞게 조정 */
+  height: auto; /* 자동 높이 */
+  max-width: 1000px; /* 원하는 최대 너비로 조정 */
+  max-height: 1000px; /* 원하는 최대 높이로 조정 */
+  object-fit: cover; /* 이미지가 컨테이너에 맞도록 조정 */
+}
+
+/*.LandingNavigation {*/
+/*  position: absolute;*/
+/*  bottom: 0;*/
+/*  left: 50%;*/
+/*  !*transform: translate(-50%, -50%);*!*/
+/*  width: 700px; !* 원하는 너비로 조정 *!*/
+/*  height: 200px; !* 원하는 높이로 조정 *!*/
+/*  overflow: hidden; !* 이미지가 컨테이너를 넘치지 않도록 설정 *!*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*}*/
+
+/*.LandingNavigation img {*/
+/*  width: 100%;*/
+/*  height: auto;*/
+/*  object-fit: cover; !* 이미지가 컨테이너에 맞도록 조정 *!*/
+/*  object-position: bottom; !* 이미지의 하단이 잘리도록 설정 *!*/
+/*}*/
+
+
+.NaviBackground {
+  width: 1000px;
+  height: 80px;
+  background-color: white;
+  clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
+  z-index: 3;
+  position: relative;
+}
+
+/*.NaviBackground {*/
+/*  position: relative;*/
+/*  width: 700px;*/
+/*  height: 80px;*/
+/*  background-color: white;*/
+/*  clip-path: polygon(5% 10px, 95% 10px, 100% 100%, 0% 100%);*/
+/*  z-index: 3;*/
+/*  overflow: hidden;*/
+/*}*/
+
+/*.NaviBackground::before {*/
+/*  content: '';*/
+/*  position: absolute;*/
+/*  top: -10px;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 20px;*/
+/*  background-color: white;*/
+/*  border-top-left-radius: 20px;*/
+/*  border-top-right-radius: 20px;*/
+/*  z-index: -1; !* Ensure it is behind the main content *!*/
+/*}*/
+
+
+
 .App {
   display: flex;
   flex-direction: column;
@@ -64,7 +230,6 @@ LandingText {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-
 }
 
 /*.postBackground {*/
@@ -1169,3 +1334,4 @@ button[type='PostImageUploadBtn'] {
   opacity: 1;
   visibility: visible;
 }
+
