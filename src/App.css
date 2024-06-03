@@ -29,7 +29,7 @@
 }
 
 .default-background {
-  background-image: url('https://lh3.googleusercontent.com/fife/ALs6j_FmdsUHLyWuW2C8jbjDCTi-97WCPIpoVvOYwxlCqBh0GfttrbD2weMw6WKmQjmmrg41yGoLSZZDX83Nj1vyJiGsOG8gZucs9t-U3c1P0lTZyiDSjDeCd1r9TH8_OJnfne4m8zOUNg_cr-r_l2kiptwnuFtGz3mboYOTwqfvEgGoyt3pob8vm1MqrDKhCKtm5veLsr-5FgLKkcPQmW7KMZPlFmAvV6XujTLmGNNXvP_j0vNzvzounl8QfrsjFzu2WDTtvj_6SWkMc79GlmU82iViL9b4zpprldbxDKGZdG6Vbdmoyjnp3bu3WeslZgwXTyLhABL8V-W_v57box6d6K7o6Mqa6GH-Nr0eu_2c_7Z9MOrJSJc1Lg0O92Q3H1vVyJwvd8TZjzRhHi-vF6BWJJjZ-_-w1VndpGu8Z5Yy1Q-qjgGFT2N2oq6oNctiZXNwMghFfts0o2mQkkAd_pcbagh6d5XG59uOvRP1EB7-Sez8pYGOC5mIGCtrwNjcjhrTEHEi2NnkOU7KcJJJA6IW4QB2pGGw_GhVGUn7PQSG8iF7PumQ5G5HNJghRpI15LXBZm9_uKnld1-zv7Knu6-xLnC_gx0tvnZ7i9GsLOukof9C8TnJmGYr0P6_5MNmkNYSsdzs59KUD2kEiC4HKqxxlGbde19ObuUOsKTxq0sdxFIA_MZQKxi3Tjv5MdPy5VHBF_phZ8IRMjqkPkFXrgvAI68SB8rTTTAVIwg0AH9Q8QJclgt0NQWizLBYRlNg781f0YCZQiDO2xvfkClX6l5-dSsiM0nuKNvQRIEZG1kgBiANQE1yEVhxl8FNf6txhZO5Jvhu_RKnBPtz8MoKTIyOzmWDQfuC-ijPq3fwgCfDabSP99n7FYAuxuD3wfL_QB9an5nJEcGBrrU_F4388uCv8aQU2dNbmuoHf35wu2kf-g9O9qaNTZT6-_24PY0vgwMGEaGy7u5biCqPFthmOZgW2aLVWaXH012p2Ec7mDMW8C9s5Ot6NW1MqnI2gR4Vz2wsByumZuFWAXZu-TtcziNJl-mBYBlHvf6fxSI4tD6O7GHjnmW_6bUTjiSZf5-o1h7_hI_D8RNsdRRoOsGoNzeK5CgiVlDBy7dqlSa1qwuTNwhUcdGvSbLMzvDBrnSvoi_oMEfHwQSOGdlTFRFUNq-FTjUu-Tvl8sNpEeJetFKFnlu4PuO7AOm_6BjynDumi6UBJodDsxgSJ8tMgCuj_IQA2rIKPCi7GjV1by_bxUHBLlaBeQjs1P_MnkU3w3Xix4n9ABaLYuRU5raJcTLoRiWWAfXeuB2OJhUIqc1tUlKSpvgT1VkjoQYRq-MLdkCuo8XuiTflyJD7FEZ4qFbI-1XiRH1yqx7rdASfs0kRG4XRcbCqjBgtAxHR_UvIvfx18mHLBKhYjfVt_PhXlFv2GWtBV2T2Bn3HW-9OCNXFrnHKQnjTEmktnLuOu0zTSRiCiJ7IHpnJQ3Z6oPJleEMEGFXhobQb_sbYqU3GXvm3PGlxhOzA_kav46zGK9_-ks370RT6ngm9P6cFEONckhdATl8x8qY7b6vMDrOQVL7wTlulRSIpWDTbjO9LeBU6betQezoqr8UyuNkMxObbGEVUzdxmZLjTJuRp4NZrtSexJnKfrmzDXkVAUv1aljt6hUlen3eq-wyQP--Y2tcXTLFYgjIN-q0Esf8q-2SLUkgVmNU67QtTb-x-iFp-ifblO-tZ-yBnHA=w3024-h1714');
+  background-image: url('https://lh3.google.com/u/0/d/1QOl4eWatXl7g-rjCSabt-rw-Uge_Ko3m=w3024-h1714-iv1');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -347,7 +347,7 @@ button {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-image: url('./assets/icon.png');
+  /*background-image: url('assets/icon.png');*/
   background-size: cover;
   border: none;
   cursor: pointer;
@@ -390,16 +390,19 @@ button {
 }
 
 .InputField {
-  width: 345px;
-  height: 33px;
-  border: 1px solid black;
+  width: 330px;
+  height: 38px;
+  border: 1.5px solid #C2CFA5;
   border-radius: 4px;
   color: black;
   font-size: 14px;
   background-color: transparent;
-  margin-top: 8px;
+  margin: 8px 0px 0px 8px;
   padding-left: 10px;
+  border-radius: 30px;
 }
+
+
 
 .InputField::placeholder {
   /*margin-left: 20px;*/
@@ -407,6 +410,15 @@ button {
   opacity: 1; /* 브라우저에 따라 플레이스홀더의 투명도가 조정될 수 있으므로, 필요시 명시적으로 1로 설정 */
   padding: 2px;
 }
+
+.InputWithIcon {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  left: 0;
+}
+
 
 .LoginForm {
   display: flex;
@@ -416,13 +428,15 @@ button {
 }
 
 .FormInputGroup {
-  width: 355px;
+  position: relative;
+  left: 0;
+  width: auto;
   /*margin-bottom: 15px;*/
 }
 
 .HelperContainer {
-  margin: 3px 0 5px 0;
-  width: 355px;
+  margin: 3px 0 5px 30px;
+  width: 338px;
 }
 
 .HelperMessage {
@@ -438,7 +452,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 85vh;
+  height: 75vh;
 }
 
 #upload-btn {
@@ -517,8 +531,28 @@ button {
 
 .PostCard {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  overflow: hidden;
 }
+
+.postCardContent {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.postCardImgPreview {
+  width: 150px;
+  height: 120%;
+  overflow: hidden;
+}
+
+.postCardImgPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 .SubmitBtnContainer {
   width: 592px;
@@ -566,8 +600,9 @@ button {
 }
 
 .PostCardTopArea {
-  width: 544px;
-  margin: 20px 24px 0 24px;
+  /*width: 544px;*/
+  margin: 0px 0px 10px 20px;
+  padding-right: 50px;
 }
 
 .PostCardMeta {
@@ -577,6 +612,13 @@ button {
   font-size: 14px;
 }
 
+.postCardMetaContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .PostCardLine {
   width: 592px;
   height: 1px;
@@ -584,14 +626,60 @@ button {
   margin: 5px 0px;
 }
 
-.PostCardBottomArea {
-  margin: 13px 0px 0px 24px;
-  font-size: 15px;
-  font-weight: 700;
+/*.navigateButton {*/
+/*  width: 100px;*/
+/*  height: 30px;*/
+/*  background-color: #C2CFA5;*/
+/*  position: absolute;*/
+/*  bottom: -40px;*/
+/*  cursor: pointer;*/
+/*  left: 50%;*/
+/*  transform: translateX(-50%);*/
+/*  padding: 10px 20px;*/
+/*}*/
+
+.navigateButton {
+  position: absolute;
+  bottom: 10px; /* Position 10px below the bottom area */
+  left: 20px;
+  /*transform: translateX(-50%);*/
+  padding: 8px 15px;
+  background-color: #CE9F80;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  font-size: 12px;
+}
+
+.navigateButton:hover {
+  background-color: #834724;
+}
+
+.postCardBottomArea {
+  /*margin: 5px ;*/
+  padding: 0px 20px;
+  /*font-size: 15px;*/
+  /*font-weight: 700;*/
   display: flex;
   flex-direction: row;
   align-items: center;
+  /*position: relative;*/
 }
+
+
+
+.postCardContentPreview {
+  /*padding: 20px;*/
+}
+
+.postCardContentPreview p {
+  font-size: 10px;
+}
+
+
 
 .AuthorIcon {
   width: 36px;
@@ -666,6 +754,21 @@ button {
 
 .PostDateContainer {
   margin-left: 24px;
+}
+
+.postCardDate {
+  display: flex;
+  flex-display: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.postCardDetails {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  position: relative;
 }
 
 .PostImage {
@@ -828,8 +931,9 @@ button {
   height: 64px;
   background-color: transparent;
   margin-top: 16px;
-  border-top: 1px solid rgba(0, 0, 0, 0.16);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+  /*border-top: 1px solid rgba(0, 0, 0, 0.16);*/
+  /*border-bottom: 1px solid rgba(0, 0, 0, 0.16);*/
+
 }
 
 .PostTitleInput {
@@ -845,6 +949,8 @@ button {
   padding-left: 24px;
   font-size: 16px;
   font-weight: 600;
+  background-color: rgba(256, 256, 256, 0.8);
+  border: 1.5px solid #C2CFA5;
 }
 
 .PostFormContentGroup {
@@ -879,6 +985,8 @@ button {
   resize: none;
   border: none;
   padding: 24px;
+  background-color: rgba(256, 256, 256, 0.8);
+  border: 1.5px solid #C2CFA5;
 }
 
 .PostEditPage {
@@ -927,21 +1035,7 @@ button[type='PostImageUploadBtn'] {
   margin: 8px 0 18px 25px;
 }
 
-.SubmitBtn {
-  width: 355px;
-  height: 33px;
-  font-size: 14px;
-  font-weight: 600;
-  background-color: #ACA0EB;
-  border: none;
-  color: white;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
 
-.SubmitBtn:hover {
-  background-color: #7F6AEE; /* Hover color */
-}
 
 .PostFormBtnContainer {
   margin: 10px;
@@ -1335,3 +1429,133 @@ button[type='PostImageUploadBtn'] {
   visibility: visible;
 }
 
+.postCardShareBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #CE9F80;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 10px;
+  position: absolute;
+  bottom: 10px; /* Position 10px below the bottom area */
+  left: 360px;
+}
+
+
+.postCardShareBtn:hover {
+  background-color: #f0f0f0;
+}
+
+
+/*.icon-share {*/
+/*  color: #96A98B;*/
+/*  margin: 0px 10px 0px 25px;*/
+/*  font-size: 50px;*/
+/*}*/
+
+.postCardShareBtn img {
+  width: 50%;
+  height: auto;
+}
+
+.LoginContainer {
+  position: relative;
+  background-color: rgba(256, 256, 256, 0.5);
+  padding: 35px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07),
+  0 2px 4px rgba(0,0,0,0.07),
+  0 4px 8px rgba(0,0,0,0.07),
+  0 8px 16px rgba(0,0,0,0.07),
+  0 16px 32px rgba(0,0,0,0.07),
+  0 32px 64px rgba(0,0,0,0.07);
+  border-radius: 10px;
+}
+
+.SignUpContainer {
+  background-color: rgba(256, 256, 256, 0.5);
+  padding: 35px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07),
+  0 2px 4px rgba(0,0,0,0.07),
+  0 4px 8px rgba(0,0,0,0.07),
+  0 8px 16px rgba(0,0,0,0.07),
+  0 16px 32px rgba(0,0,0,0.07),
+  0 32px 64px rgba(0,0,0,0.07);
+  border-radius: 10px;
+}
+
+
+.LoginSubmitBtn {
+  width: 150px;
+  height: 40px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: #C2CFA5;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.SubmitBtn {
+  width: 150px;
+  height: 40px;
+  margin-top: 30px;
+  border: none;
+  border-radius: 30px;
+  background-color: #C2CFA5;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.SubmitBtn:hover {
+  background-color: #96A98B; /* Hover color */
+}
+
+.signUpTextContainer p {
+  font-size: 16px;
+}
+
+
+.Pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*margin-top: 20px;*/
+  position: fixed;
+  bottom: 50px;
+  /*width: 100%;*/
+  margin-left: 240px;
+}
+
+.arrowButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #C2CFA5;
+  font-size: 24px;
+  margin: 0 10px;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  background-color: #C2CFA5;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #f39c12;
+}

@@ -40,7 +40,7 @@ function App() {
     // 현재 경로에 따라 배경 이미지 클래스 선택
     const getBackgroundClass = (pathname) => {
         if (pathname === ROUTES.LANDING) return 'landing-background';
-        if (pathname === ROUTES.HOME) return 'main-background';
+        if (pathname === ROUTES.HOME || ROUTES.LOGIN) return 'main-background';
         return 'default-background';
     };
 

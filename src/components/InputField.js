@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import HelperMessage from './HelperMessage';
+import { FaUser } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { BiRename } from "react-icons/bi";
 
 // Common InputField component
 const InputField = ({ type, value, onChange, placeholder }) => {
@@ -23,7 +26,7 @@ const isValidEmail = (email) => {
     return emailRegex.test(email);
 };
 
-const createInputField = (type, defaultLabel, defaultHelperText, additionalValidation) => {
+const createInputField = (type, defaultLabel, defaultPlaceholder, defaultHelperText, additionalValidation, IconComponent) => {
     return ({ label = defaultLabel, error, labelStyle, ...rest }) => {
         const [helperText, setHelperText] = useState(defaultHelperText);
 
@@ -45,24 +48,28 @@ const createInputField = (type, defaultLabel, defaultHelperText, additionalValid
         const fieldStyle = getFieldStyle(error, helperText);
 
         return (
-            <div className="FormInputGroup" style={fieldStyle}>
+            <div className="FormInpuFormInputGrouptGroup" style={fieldStyle}>
                 <div className="Text18" style={labelStyle}>{label}</div>
-                <InputField
-                    type={type}
-                    placeholder={rest.placeholder || `${label}을(를) 입력하세요`}
-                    {...rest}
-                />
-                {(error || helperText) && <HelperMessage text={error || helperText} />}
+                <div className="InputWithIcon">
+                    {IconComponent && <IconComponent className="Icon" />}
+                    <InputField
+                        type={type}
+                        placeholder={defaultPlaceholder}
+                        {...rest}
+                        style={{ paddingLeft: '8px' }}
+                    />
+                </div>
+                {(error || helperText) && <HelperMessage text={error || helperText}/>}
             </div>
         );
     };
 };
 
 // Creating input field components
-const EmailInputField = createInputField("email", "이메일", "*이메일을 입력하세요.", (value) => !isValidEmail(value) && "*올바른 이메일 주소 형식을 입력해주세요");
-const PasswordInputField = createInputField("password", "비밀번호", "*비밀번호를 입력해주세요.");
-const PasswordConfirmInputField = createInputField("password", "비밀번호 확인", "*비밀번호 확인을 입력해주세요.");
-const NicknameInputField = createInputField("text", "", "*닉네임을 입력해주세요.", (value) => value.length > 10 ? "*닉네임은 최대 10자까지 작성 가능합니다." : "");
+const EmailInputField = createInputField("email", "", "이메일을 입력하세요.", "*이메일을 입력해주세요.", (value) => !isValidEmail(value) && "*올바른 이메일 주소 형식을 입력해주세요", FaUser);
+const PasswordInputField = createInputField("password", "", "비밀번호를 입력하세요.","*비밀번호를 입력해주세요.", null, RiLockPasswordFill);
+const PasswordConfirmInputField = createInputField("password", "", "비밀번호 확인을 입력하세요.","*비밀번호 확인을 입력해주세요.", null, RiLockPasswordFill);
+const NicknameInputField = createInputField("text", "", "닉네임을 입력하세요.", "*닉네임을 입력해주세요.", (value) => value.length > 10 ? "*닉네임은 최대 10자까지 작성 가능합니다." : "", BiRename);
 
 // ProfileInputField component is created separately due to the file upload nature
 const ProfileInputField = ({ profileImageError, profileImagePreview, handleProfileImageChange, label = "프로필 사진", labelStyle }) => {
@@ -82,8 +89,8 @@ const ProfileInputField = ({ profileImageError, profileImagePreview, handleProfi
 
     return (
         <div className="FormInputGroup" style={fieldStyle}>
-            <div className="Text18" style={labelStyle}>{label}</div>
-            {(profileImageError || helperText) && <HelperMessage text={profileImageError || helperText} />}
+            {/*<div className="Text18" style={labelStyle}>{label}</div>*/}
+            {(profileImageError || helperText) && <HelperMessage text={profileImageError || helperText} style={{marginLeft: '10px'}}/>}
             <label htmlFor="file-upload" id="upload-btn" style={{ backgroundImage: `url(${profileImagePreview})` }}>
                 {!profileImagePreview && <div id="cross-shape"></div>}
                 <input type="file" id="file-upload" onChange={handleProfileImageChange} />

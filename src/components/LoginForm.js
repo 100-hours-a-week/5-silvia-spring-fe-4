@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { EmailInputField, PasswordInputField } from './InputField';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -50,7 +52,7 @@ const LoginForm = () => {
         if (!emailError && !passwordError) {
             login(email, password);
         } else {
-            alert('올바른 이메일과 비밀번호를 입력해주세요.');
+            toast.error('올바른 이메일과 비밀번호를 입력해주세요.');
         }
     };
 
@@ -70,40 +72,46 @@ const LoginForm = () => {
         fetch('http://localhost:3001/login', options)
             .then(response => {
                 if (response.ok) {
-                    alert('로그인 성공!');
-                    window.location.href = '/'; // Redirect to the post page
+                    toast.success('로그인 성공!');
+                    window.location.href = '/main'; // Redirect to the post page
                 } else {
                     return response.text().then(message => {
-                        alert(`인증 실패: ${message}`);
+                        toast.error(`인증 실패: ${message}`);
                     });
                 }
             })
             .catch(error => {
                 console.error('로그인 오류:', error);
-                alert('로그인 중 오류가 발생했습니다.');
+                toast.error('로그인 중 오류가 발생했습니다.');
             });
     };
 
     return (
         <form className="LoginForm" onSubmit={handleSubmit}>
-            <div className="Text32" style={{ marginBottom: '51px' }}>로그인</div>
+            <div className="Text32" style={{marginBottom: '51px'}}>Login</div>
             <EmailInputField
                 value={email}
                 onChange={handleEmailChange}
                 placeholder="이메일을 입력하세요"
-                label="이메일"
+                // label="이메일"
                 error={emailError}
             />
             <PasswordInputField
                 value={password}
                 onChange={handlePasswordChange}
                 placeholder="비밀번호를 입력하세요"
-                label="비밀번호"
+                // label="비밀번호"
                 error={passwordError}
             />
-            <button className="SubmitBtn" style={{ marginTop: '5px' }}>로그인</button>
-            <a href="/register" className="Text14"
-               style={{ marginTop: '12px', display: 'block', textAlign: 'center' }}>회원가입</a>
+
+            <button className="SubmitBtn" style={{marginTop: '5px'}}>로그인</button>
+
+            <div className="signUpTextContainer"
+                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '12px'}}>
+                <p style={{margin: 0, fontSize: '14px'}}>아직 계정이 없나요?</p>
+                <a href="/register" className="Text14" style={{marginLeft: '8px', fontWeight: '550'}}>회원가입</a>
+            </div>
+            <ToastContainer />
         </form>
     );
 };

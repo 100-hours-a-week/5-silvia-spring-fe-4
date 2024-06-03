@@ -169,7 +169,7 @@ const SignUpForm = () => {
 
     return (
         <form className="SignupForm" onSubmit={handleSubmit}>
-            <div className="Text32" style={{marginBottom: '51px'}}>회원가입</div>
+            <div className="Text32" style={{marginBottom: '51px'}}>Sign Up</div>
 
             <div className="SignUpProfilePickerContainer">
                 <div className="SignUpProfileLabel"><span>프로필 사진</span></div>
@@ -179,7 +179,7 @@ const SignUpForm = () => {
                         accept="image/*"
                         id="profileImgInput"
                         onChange={handleFileChange}
-                        style={{ display: 'none' }}
+                        style={{display: 'none'}}
                     />
                     <label htmlFor="profileImgInput" style={{
                         width: '149px',
@@ -205,7 +205,7 @@ const SignUpForm = () => {
                                 }}
                             />
                         ) : (
-                            <div style={{ width: '24px', height: '24px', position: 'relative' }}>
+                            <div style={{width: '24px', height: '24px', position: 'relative'}}>
                                 <div style={{
                                     position: 'absolute',
                                     top: '50%',
@@ -227,41 +227,44 @@ const SignUpForm = () => {
                             </div>
                         )}
                     </label>
-                    {uploadError && <div style={{ color: 'red', marginTop: '10px' }}>{uploadError}</div>}
+                    {uploadError && <div style={{color: 'red', marginTop: '10px'}}>{uploadError}</div>}
                 </div>
             </div>
 
             <EmailInputField
-                label="이메일*"
+                // label="이메일*"
                 value={email}
                 onChange={handleEmailChange}
                 error={emailError}
-                labelStyle={{ fontSize: '15px' }}
+                labelStyle={{fontSize: '15px'}}
             />
             <PasswordInputField
-                label="비밀번호*"
+                // label="비밀번호*"
                 value={password}
                 onChange={handlePasswordChange}
                 error={passwordError}
-                labelStyle={{ fontSize: '15px' }}
+                labelStyle={{fontSize: '15px'}}
             />
             <PasswordConfirmInputField
-                label="비밀번호 확인*"
+                // label="비밀번호 확인*"
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
                 error={confirmPasswordError}
-                labelStyle={{ fontSize: '15px' }}
+                labelStyle={{fontSize: '15px'}}
             />
             <NicknameInputField
-                label="닉네임*"
+                // label="닉네임*"
                 value={nickname}
                 onChange={handleNicknameChange}
                 error={nicknameError}
-                labelStyle={{ fontSize: '15px' }}
+                labelStyle={{fontSize: '15px'}}
             />
-            <button className="SubmitBtn" style={{marginTop: '5px'}}>회원가입</button>
-            <a href="/login" className="Text14"
-               style={{marginTop: '12px', display: 'block', textAlign: 'center'}}>로그인하러 가기</a>
+            <button className="SubmitBtn">회원가입</button>
+            <div className="signUpTextContainer"
+                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '12px'}}>
+                <p style={{margin: 0, fontSize: '14px'}}>이미 계정이 있나요? </p>
+                <a href="/login" className="Text14" style={{marginLeft: '8px', fontWeight: '550'}}>로그인하기</a>
+            </div>
         </form>
     );
 };

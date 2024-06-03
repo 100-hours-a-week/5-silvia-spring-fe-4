@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
+
 import * as Buttons from './Buttons';
-import HelperMessage from './HelperMessage';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PostForm = ({ TitleValue, ContentValue, onTitleChange, onContentChange, onSubmit, onImageUpload, isUploading }) => {
-    const [helperMessage, setHelperMessage] = useState('');
 
-    useEffect(() => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
         if (!TitleValue || !ContentValue) {
-            setHelperMessage('*제목과 내용을 모두 작성해주세요');
+            toast.error('*제목과 내용을 모두 작성해주세요');
         } else {
-            setHelperMessage('');
+            onSubmit(event);
         }
-    }, [TitleValue, ContentValue]);
+    };
 
     return (
-        <form className="PostForm" onSubmit={onSubmit}>
+        <form className="PostForm" onSubmit={handleSubmit}>
             <div className="PostFormTitleGroup">
                 <div className="PostTitleLabel">제목*</div>
                 <div className="PostTitleInputContainer">
@@ -37,7 +38,6 @@ const PostForm = ({ TitleValue, ContentValue, onTitleChange, onContentChange, on
                         onChange={onContentChange}
                     ></textarea>
                 </div>
-                {helperMessage && <HelperMessage text={helperMessage}/>}
             </div>
             <div className="FormImgInputGroup">
                 <div className="PostFormImgLabel">이미지 업로드</div>
@@ -52,6 +52,7 @@ const PostForm = ({ TitleValue, ContentValue, onTitleChange, onContentChange, on
             <div className="PostFormBtnContainer">
                 <Buttons.SubmitBtn label="완료" />
             </div>
+            <ToastContainer />
         </form>
     );
 };

@@ -7,6 +7,7 @@ function Header({ showBackButton, showUserProfile }) {
     const [profileImage, setProfileImage] = useState(null);
     const userId = Cookies.get('userId');
     const navigate = useNavigate();
+    const defaultProfileImage = "https://lh3.google.com/u/0/d/1ra2p2F4dl1ITC1r3M2ORKyqjt-O00EgE=w3024-h1714-iv2";
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -28,17 +29,17 @@ function Header({ showBackButton, showUserProfile }) {
                 }
                 const user = data.users.find(u => u.userId.toString() === userId);
                 if (user) {
-                    setProfileImage(user.profileimg);
+                    setProfileImage(user.profileimg || defaultProfileImage);
+                } else {
+                    setProfileImage(defaultProfileImage);
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error);
+                setProfileImage(defaultProfileImage); // 기본 이미지 설정
             }
         };
 
         fetchUserData();
-    }, [userId]);
-
-    useEffect(() => {
     }, [userId]);
 
     const toggleDropdown = () => {
@@ -73,7 +74,7 @@ function Header({ showBackButton, showUserProfile }) {
             });
             if (response.ok) {
                 console.log('Logout successful');
-                window.location.href = '/login';
+                window.location.href = '/';
             } else {
                 console.error('Logout failed');
             }
@@ -82,10 +83,8 @@ function Header({ showBackButton, showUserProfile }) {
         }
     };
 
-
     return (
         <div className="Header">
-
             <div className="HeaderContent">
                 <div className="HeaderEmptyBox">
                     {showBackButton && <button className="BackBtn" onClick={handleBackButtonClick}>〈</button>}
@@ -96,11 +95,11 @@ function Header({ showBackButton, showUserProfile }) {
                 <div className="HeaderEmptyBox">
                     {showUserProfile && (
                         <div className="UserProfile" onClick={toggleDropdown}>
-                            {profileImage && <img src={profileImage} alt="User Profile" className="UserProfile"/>}
+                            <img src={profileImage || defaultProfileImage} alt="User Profile" className="UserProfile"/>
                             <div id="myDropdown" className={`dropdown-content ${isDropdownVisible ? 'show' : ''}`}>
                                 <a href={userId ? `/profile/edit/${userId}` : '#'}>회원정보 수정</a>
                                 <a href={userId ? `/users/${userId}/password` : '#'}>비밀번호 수정</a>
-                                <a href="/login" onClick={handleLogout}>로그아웃</a>
+                                <a href="/" onClick={handleLogout}>로그아웃</a>
                             </div>
                         </div>
                     )}
