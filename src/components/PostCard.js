@@ -132,8 +132,8 @@ const PostCard = () => {
             </div>
             <div className="PostCardsContainer">
                 {currentPosts.map((post) => {
-                    const { id, user_id, title, article, post_picture, likes, create_dt } = post;
-                    const formattedDate = create_dt.split('T')[0];
+                    const { id, user_id, title, article, post_picture, likes, create_at } = post;
+                    const formattedDate = create_at.split('T')[0];
 
                     const author = users.find(user => user.user_id === user_id);
                     const authorName = author ? author.nickname : 'Unknown';

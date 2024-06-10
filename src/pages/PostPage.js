@@ -266,7 +266,7 @@ const PostPage = () => {
                                     </>
                                 )}
                                 <div className="PostDateContainer">
-                                    <PostComponents.Date date={formatDate(post.create_dt)}/>
+                                    <PostComponents.Date date={formatDate(post.create_at)}/>
                                 </div>
                             </div>
                             <div className="PostBtnContainer">
@@ -311,7 +311,7 @@ const PostPage = () => {
                             <div className="CommentAuthor">
                                 <img src={comment.profile_picture} alt="Author" className="AuthorIcon"/>
                                 <div className="CommenterName">{comment.nickname}</div>
-                                <div className="CommentDateContainer">{formatDate(comment.create_dt)}</div>
+                                <div className="CommentDateContainer">{formatDate(comment.create_at)}</div>
                             </div>
                             {comment.user_id && comment.user_id.toString() === userId && (
                                 <div className="CommentBtn">
