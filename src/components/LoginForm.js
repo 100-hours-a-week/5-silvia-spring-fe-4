@@ -79,10 +79,7 @@ const LoginForm = () => {
                 if (data.success) {
                     localStorage.setItem('nickname', data.nickname);
                     navigate('/main');
-                    // toast.success(`${data.nickname}님 안녕하세요!`);
-                    // setTimeout(() => {
-                    //     navigate('/main');
-                    // }, 3000);
+
                 } else {
                     toast.error(`인증 실패: ${data.message}`);
                 }

@@ -13,13 +13,12 @@ const getCookieValue = (name) => {
     return null;
 };
 
-const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toISOString().slice(0, 19).replace('T', ' ');
+const formatDate = (date) => {
+    return new Date(date).toLocaleString();
 };
 
 const PostPage = () => {
-    const {postId} = useParams();
+    const { postId } = useParams();
     const navigate = useNavigate();
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -52,7 +51,7 @@ const PostPage = () => {
                 const usersData = await usersResponse.json();
                 setUsers(usersData.users);
 
-                const commentsResponse = await fetch(`http://localhost:3001/api/posts/${postId}/comments`);
+                const commentsResponse = await fetch(`http://localhost:3001/api/posts/${postId}/comments?include_edited=true`);
                 if (!commentsResponse.ok) {
                     throw new Error('Failed to fetch comments data');
                 }
@@ -69,7 +68,6 @@ const PostPage = () => {
 
         fetchPost();
     }, [postId]);
-
 
     if (loading) {
         return <p>Loading...</p>;
@@ -95,7 +93,6 @@ const PostPage = () => {
         } catch (error) {
             if (error.response && error.response.status === 403) {
                 setErrorLabel('🥑 수정 권한이 없습니다');
-                // alert('수정 권한이 없습니다');
             } else {
                 console.error('Error checking edit permission:', error);
                 alert('권한 확인 중 오류가 발생했습니다.');
@@ -125,14 +122,12 @@ const PostPage = () => {
                 if (!response.ok) {
                     if (response.status === 403) {
                         setErrorLabel('🥑 댓글 삭제 권한이 없습니다');
-                        // alert('댓글 삭제 권한이 없습니다.');
                     } else {
                         throw new Error('Failed to delete comment');
                     }
                 } else {
                     setComments(prevComments => prevComments.filter(comment => comment.id !== commentToDelete));
                     setSuccessLabel('🥑 댓글이 삭제되었습니다.');
-                    // alert('댓글이 삭제되었습니다.');
                 }
             } else {
                 const response = await fetch(`http://localhost:3001/api/posts/${postId}`, {
@@ -142,7 +137,6 @@ const PostPage = () => {
                 if (!response.ok) {
                     if (response.status === 403) {
                         setErrorLabel('🥑 게시글 삭제 권한이 없습니다');
-                        // alert('게시글 삭제 권한이 없습니다.');
                     } else {
                         throw new Error('Failed to delete post');
                     }
@@ -163,7 +157,6 @@ const PostPage = () => {
         setSuccessLabel('');
         setErrorLabel('');
     };
-
 
     const handleCommentInputChange = (e) => {
         setCommentText(e.target.value);
@@ -191,9 +184,13 @@ const PostPage = () => {
                 );
 
                 if (response.status === 200) {
-                    setComments(prevComments => prevComments.map(comment =>
-                        comment.id === editingCommentId ? { ...comment, comment_content: commentText } : comment
-                    ));
+                    // Re-fetch comments with include_edited=true
+                    const commentsResponse = await fetch(`http://localhost:3001/api/posts/${postId}/comments?include_edited=true`);
+                    if (!commentsResponse.ok) {
+                        throw new Error('Failed to fetch comments data');
+                    }
+                    const commentsData = await commentsResponse.json();
+                    setComments(commentsData);
                 } else {
                     throw new Error('Failed to update comment');
                 }
@@ -233,7 +230,6 @@ const PostPage = () => {
         }
     };
 
-
     function formatViews(views) {
         if (views >= 1000000) {
             return (views / 1000000).toFixed(1) + "M";
@@ -248,7 +244,6 @@ const PostPage = () => {
         }
     }
 
-    // const author = post ? post.user_id : null;
     const author = users.find(user => user.user_id === post.user_id);
 
     return (
@@ -256,50 +251,50 @@ const PostPage = () => {
             <div className="Post">
                 <div className="PostMetaData">
                     <div className="PostMetaDataInner">
-                        <PostComponents.PostTitle postTitle={post.title}/>
+                        <PostComponents.PostTitle postTitle={post.title} />
                         <div className="PostSubContainer">
                             <div className="PostSubContainerLeft">
                                 {author && (
                                     <>
-                                        <PostComponents.AuthorIcon AuthorImg={author.profile_picture}/>
-                                        <PostComponents.AuthorName AuthorName={author.nickname}/>
+                                        <PostComponents.AuthorIcon AuthorImg={author.profile_picture} />
+                                        <PostComponents.AuthorName AuthorName={author.nickname} />
                                     </>
                                 )}
                                 <div className="PostDateContainer">
-                                    <PostComponents.Date date={formatDate(post.create_at)}/>
+                                    <PostComponents.Date date={post.create_at} />
                                 </div>
                             </div>
                             <div className="PostBtnContainer">
-                                <Buttons.PostBtn label="수정" onClick={handleEdit}/>
-                                <Buttons.PostBtn label="삭제" onClick={() => showModal()}/>
+                                <Buttons.PostBtn label="수정" onClick={handleEdit} />
+                                <Buttons.PostBtn label="삭제" onClick={() => showModal()} />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="PostBody">
-                    <PostComponents.PostImage PostImg={post.post_picture}/>
-                    <PostComponents.PostContent label={post.article}/>
+                    <PostComponents.PostImage PostImg={post.post_picture} />
+                    <PostComponents.PostContent label={post.article} />
                 </div>
                 <div className="PostCountContainer">
-                    <PostComponents.PostCount num={formatViews(post.views)} label="조회수"/>
-                    <PostComponents.PostCount num={formatViews(comments.length)} label="댓글"/>
+                    <PostComponents.PostCount num={formatViews(post.views)} label="조회수" />
+                    <PostComponents.PostCount num={formatViews(comments.length)} label="댓글" />
                 </div>
             </div>
             <div className="CommentForm">
                 <div className="CommentInputContainer">
-                <textarea
-                    type="text"
-                    className="CommentInput"
-                    placeholder="댓글을 남겨주세요!"
-                    value={commentText}
-                    onChange={handleCommentInputChange}
-                ></textarea>
+                    <textarea
+                        type="text"
+                        className="CommentInput"
+                        placeholder="댓글을 남겨주세요!"
+                        value={commentText}
+                        onChange={handleCommentInputChange}
+                    ></textarea>
                 </div>
-                <hr/>
+                <hr />
                 <div className="CommentBtnContainer">
                     <Buttons.CreateBtn
                         label={editingCommentId ? "댓글 수정" : "댓글 등록"}
-                        style={{marginRight: '18px'}}
+                        style={{ marginRight: '18px' }}
                         onClick={handleCommentRegister}
                     />
                 </div>
@@ -309,15 +304,15 @@ const PostPage = () => {
                     <div key={comment.id} className="Comment">
                         <div className="CommentTopArea">
                             <div className="CommentAuthor">
-                                <img src={comment.profile_picture} alt="Author" className="AuthorIcon"/>
+                                <img src={comment.profile_picture} alt="Author" className="AuthorIcon" />
                                 <div className="CommenterName">{comment.nickname}</div>
                                 <div className="CommentDateContainer">{formatDate(comment.create_at)}</div>
                             </div>
                             {comment.user_id && comment.user_id.toString() === userId && (
                                 <div className="CommentBtn">
                                     <Buttons.PostBtn label="수정"
-                                                     onClick={() => handleCommentEdit(comment.id, comment.comment_content)}/>
-                                    <Buttons.PostBtn label="삭제" onClick={() => showModal(comment.id)}/>
+                                                     onClick={() => handleCommentEdit(comment.id, comment.comment_content)} />
+                                    <Buttons.PostBtn label="삭제" onClick={() => showModal(comment.id)} />
                                 </div>
                             )}
                         </div>
@@ -333,7 +328,6 @@ const PostPage = () => {
                 onConfirm={confirmDelete}
             />
             <ToastMessage successLabel={successLabel} errorLabel={errorLabel} clearLabels={clearLabels} />
-
         </div>
     );
 };
